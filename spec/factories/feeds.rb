@@ -1,5 +1,6 @@
 FactoryBot.define do
   factory :feed do
-    references { "" }
+    profile { nil }
+    user { nil }
   end
 end

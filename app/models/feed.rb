@@ -1,5 +1,4 @@
 class Feed < ApplicationRecord
-
-  has_many :posts
-  
+  belongs_to :profile
+  belongs_to :user
 end

@@ -10,7 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_19_043121) do
+ActiveRecord::Schema.define(version: 2019_09_19_043909) do
+
+  create_table "feeds", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "profile_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["profile_id"], name: "index_feeds_on_profile_id"
+  end
+
+  create_table "posts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "title"
+    t.string "content"
+    t.string "attachment"
+    t.bigint "profile_id", null: false
+    t.bigint "feed_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["feed_id"], name: "index_posts_on_feed_id"
+    t.index ["profile_id"], name: "index_posts_on_profile_id"
+  end
 
   create_table "profiles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "first_name"
@@ -30,5 +49,8 @@ ActiveRecord::Schema.define(version: 2019_09_19_043121) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "feeds", "profiles"
+  add_foreign_key "posts", "feeds"
+  add_foreign_key "posts", "profiles"
   add_foreign_key "profiles", "users"
 end
