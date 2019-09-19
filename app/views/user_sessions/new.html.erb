@@ -1,0 +1,35 @@
+<%= render 'shared/login_box' do %>
+  <% if @failed_login %>
+    <p class="error-text">
+      <i class='fa fa-warning'></i> Email/Password is incorrect
+    </p>
+  <% end %>
+  Log In
+  <%= form_tag user_sessions_path, :method => :post do %>
+    <div class="form-group">
+      <div class="field">
+        <%= label_tag :email, 'Email', class: 'control-label' %><br />
+        <%= text_field_tag :email,'', class: 'form-control', required: true, autofocus: true %>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="field">
+        <%= label_tag :password, 'Password', class: 'control-label' %><br />
+        <%= password_field_tag :password,'' , class: 'form-control', required: true %>
+    </div>
+    </div>
+    <div class="form-group">
+      <div class="field">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <%= link_to 'Sign up', new_user_path %>
+            <%= button_tag class: 'btn btn-primary qol-btnsmall' do %>
+            <i class="fa fa-lock" aria-hidden="true"></i> Login
+            <% end %>
+          </div>
+        </div>
+        <div class="actions">
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% end %>

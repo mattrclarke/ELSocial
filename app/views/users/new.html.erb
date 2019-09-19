@@ -1,0 +1,41 @@
+<%= render 'shared/login_box' do %>
+  <%= form_tag users_path, method: :post do %>
+    <div class="form-group">
+      <div class="field">
+        <%= label_tag :email, 'Email', class: 'control-label' %><br />
+        <%= text_field_tag :email,'', class: 'form-control', required: true, autofocus: true %>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="field">
+        <%= label_tag :password, 'Password', class: 'control-label' %><br />
+        <%= password_field_tag :password,'' , class: 'form-control', required: true %>
+      </div>
+    </div>
+      <div class="form-group">
+        <div class="field">
+          <%= label_tag :first_name, 'First Name', class: 'control-label' %><br />
+          <%= text_field_tag :first_name,'', class: 'form-control', required: true, autofocus: true %>
+        </div>
+    </div>
+    <div class="form-group">
+      <div class="field">
+        <%= label_tag :last_name, 'Last Name', class: 'control-label' %><br />
+        <%= text_field_tag :last_name,'', class: 'form-control', required: true, autofocus: true %>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="field">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <%= link_to 'Log In', user_sessions_path %>
+            <%= button_tag class: 'btn btn-primary qol-btnsmall' do %>
+            <i class="fa fa-lock" aria-hidden="true"></i> Create Account
+            <% end %>
+          </div>
+        </div>
+        <div class="actions">
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% end %>
