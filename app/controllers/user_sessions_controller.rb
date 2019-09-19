@@ -13,7 +13,6 @@ class UserSessionsController < ApplicationController
   def create
     @user = login(params[:email].downcase, params[:password])
     return failed_login unless @user
-    byebug
     redirect_to profile_path(@user.profile)
     # redirect_back_or_to(dashboard_path)
   end
