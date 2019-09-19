@@ -10,7 +10,6 @@ class ProfileController < ApplicationController
 
   def update
     @profile = profile
-    byebug
     profile.update(
       first_name: params[:profile][:first_name],
       last_name: params[:profile][:last_name]

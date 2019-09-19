@@ -2,16 +2,44 @@
   <div class="row">
     <div class="col-md-12">
       <h1>Feed</h1>
-      <% @posts.each do |post| %>
-      <p><%= post.title %></p>
-      <% end %>
-
-      <%= form_for :post, url: profile_feed_posts_path(feed_id: params[:id]), method: :create do |f| %>
-        Title: <%= f.text_field :title %><br />
-        Content: <%= f.text_field :content %><br />
-        <%= f.submit %>
-      <% end %>
-
     </div>
-  </div>
+    <div class="col-md-4">
+    <h3 class="mt-3">Share your thoughts</h3>
+    <%= form_tag profile_feed_posts_path(feed_id: params[:id]), method: :post do %>
+      <div class="form-group">
+        <div class="field">
+          <%= label_tag :title, 'Title', class: 'control-label' %><br />
+          <%= text_field_tag :title,'', class: 'form-control', required: true, autofocus: true %>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="field">
+          <%= label_tag :content, 'Content', class: 'control-label' %><br />
+          <%= text_area_tag :content,'', class: 'form-control', required: true, autofocus: true %>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="field">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <%= button_tag class: 'btn btn-primary qol-btnsmall' do %>
+              <i class="fa fa-lock" aria-hidden="true"></i> Post
+            <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+    </div>
+    <div class="col-md-8">
+      <div class="col-md-6 text-center">
+        <% @posts.each do |post| %>
+        <div class="card mb-4" style="width: 18rem;">
+          <img class="card-img-top" src="..." alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title"><%= post.title %></h5>
+            <p class="card-text"><%= post.content %></p>
+          </div>
+        </div>
+        <% end %>
+      </div>
+    </div>
 </div>
