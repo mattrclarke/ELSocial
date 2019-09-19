@@ -13,8 +13,8 @@ class UserSessionsController < ApplicationController
   def create
     @user = login(params[:email].downcase, params[:password])
     return failed_login unless @user
-    redirect_to profile_path(@user.profile)
-    # redirect_back_or_to(dashboard_path)
+    profile = Profile.find_by(user_id: @user.id)
+    redirect_to profile_feed_path(profile.id)
   end
 
   def destroy
