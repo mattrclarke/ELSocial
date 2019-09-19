@@ -3,7 +3,7 @@ FactoryBot.define do
     title { "MyString" }
     content { "MyString" }
     attachment { "MyString" }
-    profile { nil }
     feed { nil }
+    user { nil }
   end
 end

@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h1>Feed</h1>
+      <% @posts.each do |post| %>
+      <p><%= post.title %></p>
+      <% end %>
+
+      <%= form_for :post, url: profile_feed_posts_path(feed_id: params[:id]), method: :create do |f| %>
+        Title: <%= f.text_field :title %><br />
+        Content: <%= f.text_field :content %><br />
+        <%= f.submit %>
+      <% end %>
+
+    </div>
+  </div>
+</div>

@@ -6,6 +6,9 @@ Rails.application.routes.draw do
     get :success
   end
   resources :profile, only: [:show, :edit, :update] do
-    resource :feed, only: [:show]
+    resources :feed, only: [:show] do
+      resource :posts
+    end
   end
+
 end

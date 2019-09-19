@@ -14,7 +14,8 @@ class UserSessionsController < ApplicationController
     @user = login(params[:email].downcase, params[:password])
     return failed_login unless @user
     profile = Profile.find_by(user_id: @user.id)
-    redirect_to profile_feed_path(profile.id)
+    feed = Feed.find_by(profile_id: profile.id)
+    redirect_to profile_feed_path(profile_id: profile.id, id: feed.id)
   end
 
   def destroy

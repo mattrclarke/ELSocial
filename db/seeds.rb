@@ -6,5 +6,6 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-user = User.create
+user = User.create(email: "a@a.com", password: 'a')
 profile = Profile.create(user_id: user.id)
+feed = Feed.create(profile_id: profile.id, user_id: user.id)

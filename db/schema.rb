@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_19_045827) do
+ActiveRecord::Schema.define(version: 2019_09_19_060022) do
 
   create_table "feeds", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "profile_id", null: false
@@ -19,6 +19,18 @@ ActiveRecord::Schema.define(version: 2019_09_19_045827) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["profile_id"], name: "index_feeds_on_profile_id"
     t.index ["user_id"], name: "index_feeds_on_user_id"
+  end
+
+  create_table "posts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "title"
+    t.string "content"
+    t.string "attachment"
+    t.bigint "feed_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["feed_id"], name: "index_posts_on_feed_id"
+    t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
   create_table "profiles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -41,5 +53,7 @@ ActiveRecord::Schema.define(version: 2019_09_19_045827) do
 
   add_foreign_key "feeds", "profiles"
   add_foreign_key "feeds", "users"
+  add_foreign_key "posts", "feeds"
+  add_foreign_key "posts", "users"
   add_foreign_key "profiles", "users"
 end
