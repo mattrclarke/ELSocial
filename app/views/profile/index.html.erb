@@ -2,7 +2,6 @@
   <div class="row">
     <div class="col-12 mt-5">
       <% @all_profiles.each do |profile| %>
-      
       <%= link_to profile_path(id: profile.id) do %>
         <div class="profile-item text-center mr-3 mb-3">
           <img class="mt-3" src="https://loremflickr.com/320/240" />

@@ -3,7 +3,24 @@
     <div class="col-md-6">
       <h1>Viewing <%= @profile.full_name %></h1>
       <div>
-
+        <h3>Say Hi</h3>
+        <%= form_tag profile_comments_path(profile_id: @profile.id), method: :post, remote: true do %>
+          <div class="form-group">
+            <div class="field">
+              <%= label_tag :content, 'Content', class: 'control-label' %><br />
+              <%= text_area_tag :content,'', class: 'form-control', required: true, autofocus: true %>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="field">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <%= button_tag class: 'btn btn-primary qol-btnsmall' do %>
+                  <i class="fa fa-lock" aria-hidden="true"></i> Post
+                <% end %>
+              </div>
+            </div>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>

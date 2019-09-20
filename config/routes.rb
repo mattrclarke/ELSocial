@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     get :success
   end
   resources :profile, only: [:show, :index, :edit, :update] do
+    resources :comments, only: [:create]
     resources :feed, only: [:show] do
       resource :posts
     end
