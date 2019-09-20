@@ -5,6 +5,10 @@
 
 require("@rails/ujs").start()
 require("@rails/activestorage").start()
+require("jquery")
+
+import "jquery/dist/jquery.slim";
+import "popper.js/dist/popper";
 import 'bootstrap'
 import './src/application.scss'
 
