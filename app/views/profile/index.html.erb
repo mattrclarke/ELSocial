@@ -1,9 +1,15 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-12 mt-5">
+      
       <% @all_profiles.each do |profile| %>
-      <%= profile.first_name %>
-      <%= profile.last_name %>
+      <div class="col-md-3">
+        <div class="profile-item text-center">
+          <img class="mt-3" src="https://loremflickr.com/320/240" />
+          <h4 class=""><%= profile.full_name %></h4>
+          <p>Description of profile will go here<p>
+        </div>
+      </div>
       <% end %>
     </div>
   </div>

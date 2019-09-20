@@ -18,7 +18,6 @@ class ProfileSearcher
   end
   
   def search_by_first_name
-    byebug
     @search_by_first_name ||= Profile.where(first_name: formatted[0])
   end
   
