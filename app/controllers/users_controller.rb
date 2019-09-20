@@ -6,10 +6,10 @@ class UsersController < ApplicationController
 
   def create    
     user = Users::UserCreateFacade.new(
-    email: params[:email],
-    password: params[:password],
-    first_name: params[:first_name],
-    last_name: params[:last_name],
+      email: params[:email],
+      password: params[:password],
+      first_name: params[:first_name],
+      last_name: params[:last_name],
     ).run
     
     flash[:success] = "Account for #{user.email} successfully created"
