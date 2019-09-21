@@ -12,6 +12,7 @@ gem "webpacker", "~> 4.0"
 gem "bootsnap", ">= 1.4.2", require: false
 gem "font-awesome-rails"
 gem "virtus"
+gem 'carrierwave', '~> 2.0'
 
 group :development, :test do
   gem "better_errors"

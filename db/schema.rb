@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_21_110948) do
+ActiveRecord::Schema.define(version: 2019_09_21_132511) do
 
   create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "content"
@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 2019_09_21_110948) do
     t.datetime "updated_at", precision: 6, null: false
     t.text "about_me"
     t.string "image"
+    t.string "avatar"
     t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 

@@ -1,9 +1,7 @@
 class Profile < ApplicationRecord
   belongs_to :user
   has_one :feed
-
-  before_save { self.first_name.capitalize! }
-  before_save { self.last_name.capitalize! }
+  mount_uploader :image, ImageUploader
 
 
   def full_name
