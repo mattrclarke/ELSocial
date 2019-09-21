@@ -2,7 +2,6 @@ class UserSessionsController < ApplicationController
   skip_before_action :require_login, except: [:destroy]
 
   def new
-    # redirect_back_or_to(dashboard_path) if logged_in?
     redirect_to user_profile_path(user_id: current_user.id ,id: current_user.profile.id) if logged_in?
   end
 

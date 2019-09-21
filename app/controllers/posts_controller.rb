@@ -10,7 +10,5 @@ class PostsController < ApplicationController
       )
 
       redirect_to user_feed_path(id: params[:feed_id])
-      # @posts = Post.where(feed_id: params[:feed_id]).order('id DESC')
-
   end
 end
