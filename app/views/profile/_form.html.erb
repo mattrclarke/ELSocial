@@ -1,8 +1,7 @@
-<%= form_with(model: profile, local: true) do |form| %>
+<%= form_with(model: profile, url: user_profile_path) do |form| %>
   <% if profile.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(profile.errors.count, "error") %> prohibited this profile from being saved:</h2>
-
       <ul>
         <% profile.errors.full_messages.each do |message| %>
           <li><%= message %></li>
@@ -10,18 +9,37 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= form.label :first_name %>
-    <%= form.text_field :first_name %>
+  <div class="form-group">
+    <div class="field">
+      <%= label_tag :first_name, 'First Name', class: 'control-label' %><br />
+      <%= text_field_tag :first_name, profile.first_name, class: 'form-control', required: true, autofocus: true %>
+    </div>
   </div>
-
-  <div class="field">
-    <%= form.label :last_name %>
-    <%= form.text_field :last_name %>
+  <div class="form-group">
+    <div class="field">
+      <%= label_tag :last_name, 'Last Name', class: 'control-label' %><br />
+      <%= text_field_tag :last_name, profile.last_name, class: 'form-control', required: true, autofocus: true %>
+    </div>
   </div>
-
-  <div class="actions">
-    <%= form.submit %>
+  <div class="form-group">
+    <div class="field">
+      <%= label_tag :about_me, 'About me', class: 'control-label' %><br />
+      <%= text_area_tag :about_me, profile.about_me, class: 'form-control', required: true, autofocus: true %>
+    </div>
   </div>
+  <div class="form-group">
+    <div class="field">
+      <!-- <%= label_tag :avatar, 'Profile Photo', class: 'control-label' %><br />
+      <%= file_field_tag :avatar %> -->
+    </div>
+  </div>
+    <div class="form-group mt-3">
+      <div class="field">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <%= button_tag class: 'btn btn-sm btn-success' do %>
+            <i class="fa fa-lock" aria-hidden="true"></i> Update Profile
+          <% end %>
+        </div>
+      </div>
+    </div>
 <% end %>

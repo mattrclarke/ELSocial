@@ -20,11 +20,15 @@ class ProfileController < ApplicationController
   end
 
   def update
-    @profile = profile
+    profile = Profile.find(params[:id])
     profile.update(
-      first_name: params[:profile][:first_name],
-      last_name: params[:profile][:last_name]
+      first_name: profile_params[:first_name],
+      last_name: profile_params[:last_name],
+      about_me: profile_params[:about_me]
     )
+    byebug
+    profile.avatar.attach(profile_params[:avatar])
+
   end
 
   def search
@@ -32,7 +36,9 @@ class ProfileController < ApplicationController
   end
 
   private
-
+  def profile_params
+      params.permit(:first_name, :last_name, :about_me, :avatar)
+    end
   def profile
     @profile = Profile.find(params[:id])
   end

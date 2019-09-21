@@ -8,8 +8,7 @@ class FeedController < ApplicationController
     # or where().includes along the relationships and map out the results into
     # a hash or view model array
     @posts = User.find_by_sql(["select users.id, profiles.first_name,
-    profiles.last_name, posts.title, posts.content
-    from users
+    profiles.last_name, posts.title, posts.content from users
     inner join profiles on users.id = profiles.user_id
     inner join posts on users.id = posts.user_id
     where profiles.user_id in (?)
