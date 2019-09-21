@@ -9,11 +9,6 @@ Rails.application.routes.draw do
     resources :profile, only: [:show, :index, :edit, :update]
     resources :posts, only: [:create]
     resources :feed, only: [:show]
-
-    # collection do
-    #     get :profiles
-    #   end
-
     member do
       get :following, :followers
     end
