@@ -1,10 +1,22 @@
 test_user = User.create(email: "foo@bar.com", password: 'password')
-profile = Profile.create(user_id: test_user.id, first_name: "Matt", last_name: "Clarke")
+profile = Profile.create(
+  user_id: test_user.id,
+  first_name: "Matt",
+  last_name: "Clarke",
+  about_me: Faker::Lorem.paragraph(sentence_count: 15)
+
+)
 feed = Feed.create(profile_id: profile.id, user_id: test_user.id)
 
 5.times do |index|
   user = User.create(email: Faker::Internet.email, password: 'password')
-  profile = Profile.create(user_id: user.id, first_name: Faker::Name.first_name, last_name: Faker::Name.last_name)
+  profile = Profile.create(
+    user_id: user.id,
+    first_name: Faker::Name.first_name,
+    last_name: Faker::Name.last_name,
+    about_me: Faker::Lorem.paragraph(sentence_count: [0..10].sample)
+    )
+
   feed = Feed.create(profile_id: profile.id, user_id: user.id)
 
   user.follow(test_user)
