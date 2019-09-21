@@ -2,6 +2,7 @@ class ProfileController < ApplicationController
 
   def show
     @profile = profile
+    @other_user = User.find(@profile.user_id)
   end
 
   def edit

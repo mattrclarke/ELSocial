@@ -16,7 +16,9 @@
         <% end %>
       </li>
       <li class="nav-item">
-
+        <%= link_to user_profile_index_path(id: current_user.id), class: "nav-link" do %>
+          All Users
+        <% end %>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -33,7 +35,7 @@
     </ul>
     <%= form_tag user_profile_index_path, class: "form-inline my-2 pt-3 my-lg-0", method: :get do %>
     <p>
-      <%= text_field_tag :query, params[:query] %>
+      <%= text_field_tag :query, params[:query], placeholder: "Search Users" %>
       <%= submit_tag "Search", class: "btn btn-outline-success ml-3 my-2 my-sm-0" %>
     </p>
     <% end %>

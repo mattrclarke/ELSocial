@@ -3,6 +3,11 @@
     <div class="col-md-6">
       <h1>Viewing <%= @profile.full_name %></h1>
       <div>
+
+      <div id="follow-details">
+        <%= render 'shared/follow_details', other_user: @other_user %>
+      </div>
+
         <h3>Details here</h3>
       </div>
     </div>
