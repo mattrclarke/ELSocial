@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_21_132511) do
+ActiveRecord::Schema.define(version: 2019_09_21_154315) do
 
   create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "content"
@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 2019_09_21_132511) do
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "image"
     t.index ["feed_id"], name: "index_posts_on_feed_id"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
@@ -78,7 +79,6 @@ ActiveRecord::Schema.define(version: 2019_09_21_132511) do
   add_foreign_key "comments", "users"
   add_foreign_key "feeds", "profiles"
   add_foreign_key "feeds", "users"
-  add_foreign_key "posts", "feeds"
   add_foreign_key "posts", "users"
   add_foreign_key "profiles", "users"
 end

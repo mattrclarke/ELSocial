@@ -1,11 +1,11 @@
 <% posts.each do |post| %>
   <div class="card mb-4 text-center feed-card-container">
     <div class="card-body">
-      <%= image_tag "https://lorempixel.com/50/60"  %>
-      <h5 class="card-title"><%= post.title.capitalize %></h5>
-      <p class="card-text"><%= post.content %></p>
+      <%= image_tag post[:image], class: "post-image" if post[:image] %>
+      <h5 class="card-title"><%= post[:title]&.capitalize %></h5>
+      <p class="card-text"><%= post[:content] %></p>
       <ruby class="card-text">
-        <rt><%= post.first_name %> <%= post.last_name %></rt>
+        <rt><%= post[:first_name] %> <%= post[:last_name] %></rt>
       </ruby>
     </div>
   </div>
