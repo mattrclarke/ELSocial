@@ -25,5 +25,9 @@ class User < ApplicationRecord
     following.include?(other_user)
   end
 
+  def profile_id
+    Profile.find_by(user_id: self.id)
+  end
+
 
 end
