@@ -31,7 +31,6 @@ class ProfileController < ApplicationController
 
   private
   def profile_params
-    byebug
       params.require(:profile).permit(:first_name, :last_name, :about_me, :image)
     end
   def profile
