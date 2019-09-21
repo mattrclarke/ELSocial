@@ -5,7 +5,7 @@
     </div>
     <div class="col-md-4">
     <h3 class="mt-3">Share your thoughts</h3>
-    <%= form_tag profile_feed_posts_path(feed_id: params[:id]), method: :post, remote: true do %>
+    <%= form_tag user_posts_path(feed_id: params[:id]), method: :post, remote: true do %>
       <div class="form-group">
         <div class="field">
           <%= label_tag :title, 'Title', class: 'control-label' %><br />

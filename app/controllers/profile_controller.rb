@@ -7,7 +7,7 @@ class ProfileController < ApplicationController
   def edit
     @profile = profile
   end
-  
+
   def index
     if params[:query].present?
       @all_profiles ||= ProfileSearcher.new(
@@ -25,7 +25,7 @@ class ProfileController < ApplicationController
       last_name: params[:profile][:last_name]
     )
   end
-  
+
   def search
     @facade = Profiles::ProfileIndexFacade.new(query: params[:query]).run
   end

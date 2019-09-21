@@ -2,12 +2,8 @@ class UserSessionsController < ApplicationController
   skip_before_action :require_login, except: [:destroy]
 
   def new
-    redirect_to success_user_sessions_path if logged_in?
     # redirect_back_or_to(dashboard_path) if logged_in?
-  end
-
-  def success
-
+    redirect_to user_profile_path(user_id: current_user.id ,id: current_user.profile.id) if logged_in?
   end
 
   def create
@@ -15,7 +11,7 @@ class UserSessionsController < ApplicationController
     return failed_login unless @user
     profile = Profile.find_by(user_id: @user.id)
     feed = Feed.find_by(profile_id: profile.id)
-    redirect_to profile_feed_path(profile_id: profile.id, id: feed.id)
+    redirect_to user_profile_path(user_id: current_user.id, id: current_user.profile.id)
   end
 
   def destroy
