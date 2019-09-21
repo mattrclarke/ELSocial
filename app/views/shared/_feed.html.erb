@@ -1,13 +1,12 @@
-<div class="col-md-8">
-  <div class="col-md-6 text-center">
-    <% posts.each do |post| %>
-    <div class="card mb-4" style="width: 18rem;">
-      <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
-      <div class="card-body">
-        <h5 class="card-title"><%= post.title %></h5>
-        <p class="card-text"><%= post.content %></p>
-      </div>
+<% posts.each do |post| %>
+  <div class="card mb-4 text-center feed-card-container">
+    <div class="card-body">
+      <%= image_tag "https://lorempixel.com/50/60"  %>
+      <h5 class="card-title"><%= post.title.capitalize %></h5>
+      <p class="card-text"><%= post.content %></p>
+      <ruby class="card-text">
+        <rt><%= post.first_name %> <%= post.last_name %></rt>
+      </ruby>
     </div>
-    <% end %>
   </div>
-</div>
+<% end %>

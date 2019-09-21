@@ -1,17 +1,25 @@
-<%= render 'shared/follow_form', other_user: other_user if logged_in? %>
-
 <% @user ||= current_user %>
- <div class="stats">
-   <a href="<%= following_user_path(@user) %>">
-     <strong id="following" class="stat">
-       <%= @user.following.count %>
-     </strong>
-     following
-   </a>
-   <a href="<%= followers_user_path(@user) %>">
-     <strong id="followers" class="stat">
-       <%= @user.followers.count %>
-     </strong>
-     followers
-   </a>
- </div>
+<div class="stats">
+  <a href="<%= following_user_path(@user) %>">
+    <strong id="following" class="stat">
+      <%= @user.following.count %>
+    </strong>
+    following
+  </a>
+  <a href="<%= followers_user_path(@user) %>">
+    <strong id="followers" class="stat">
+      <%= @user.followers.count %>
+    </strong>
+    followers
+  </a>
+</div>
+
+<% unless current_user == other_user %>
+  <div id="follow_form">
+    <% if current_user.following?(other_user) %>
+      <%= render 'shared/unfollow' %>
+    <% else %>
+      <%= render 'shared/follow', other_user: other_user %>
+    <% end %>
+  </div>
+<% end %>
