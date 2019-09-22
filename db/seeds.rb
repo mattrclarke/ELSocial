@@ -8,7 +8,7 @@ profile = Profile.create(
 )
 feed = Feed.create(profile_id: profile.id, user_id: test_user.id)
 
-5.times do |index|
+50.times do |index|
   user = User.create(email: Faker::Internet.email, password: 'password')
   profile = Profile.create(
     user_id: user.id,
@@ -35,6 +35,7 @@ end
 
 users = User.all
 user  = users.first
-following = users[2..50]
 
-following.each { |followed| user.follow(followed) }
+# Commented to better demonstrate subscriptions
+# following = users[2..50]
+# following.each { |followed| user.follow(followed) }
