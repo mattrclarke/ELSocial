@@ -14,6 +14,9 @@ gem "font-awesome-rails"
 gem "virtus"
 gem 'carrierwave', '~> 2.0'
 
+gem 'groupdate'
+gem 'chartkick'
+
 group :development, :test do
   gem "better_errors"
   gem "binding_of_caller"

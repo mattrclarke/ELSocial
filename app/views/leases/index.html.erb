@@ -1,6 +1,29 @@
 <p id="notice"><%= notice %></p>
     <h1>Leases</h1>
 
+
+
+
+<!--The div element for the map -->
+  <div id="map" style='width: 600px; height: 400px;'></div>
+<script>
+// Initialize and add the map
+function initMap() {
+// The location of Uluru
+var uluru = {lat: -25.344, lng: 131.036};
+var uluru_2 = {lat: -22.344, lng: 119.036};
+// The map, centered at Uluru
+var map = new google.maps.Map(
+  document.getElementById('map'), {zoom: 4, center: uluru});
+// The marker, positioned at Uluru
+var markers = new google.maps.Marker({position: uluru_2, map: map});
+var marker = new google.maps.Marker({position: uluru, map: map});
+}
+</script>
+
+
+
+
     <table>
       <thead>
         <tr>
