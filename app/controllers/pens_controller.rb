@@ -13,6 +13,8 @@ class PensController < ApplicationController
         end_date: Date.current
       ).run
       @mortality_totals = totals
+
+      @mortality_forms = MortalityForm.all
   end
 
   # GET /pens/new
