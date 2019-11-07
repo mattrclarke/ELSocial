@@ -1,23 +1,24 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">ELS</a>
+  <a class="navbar-brand" href="#">Mort</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
   <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <%= link_to user_profile_path(id: current_user.profile.id), class: "nav-link" do %>
-          Profile
+        <%# <%= link_to user_profile_path(id: current_user.profile.id), class: "nav-link" do %>
+        <%= link_to leases_path, class: "nav-link" do %>
+          Leases
         <% end %>
       </li>
       <li class="nav-item">
-        <%= link_to user_feed_path(id: current_user.feed.id), class: "nav-link"  do %>
-          My Feed
+        <%= link_to pens_path, class: "nav-link" do %>
+          Pens
         <% end %>
-      </li>
-      <li class="nav-item">
-        <%= link_to user_profile_index_path(id: current_user.id), class: "nav-link" do %>
-          All Users
+        </li>
+        <li class="nav-item">
+        <%= link_to mortality_forms_path, class: "nav-link" do %>
+          Morts
         <% end %>
       </li>
       <li class="nav-item dropdown">
@@ -25,9 +26,6 @@
           Actions
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <%= link_to edit_user_profile_path(user_id: current_user.id, id: current_user.profile_id), class: "dropdown-item" do %>
-            Edit Profile
-          <% end %>
           <div class="dropdown-divider"></div>
             <%= link_to user_sessions_path, class: "dropdown-item", method: :delete do %>
               Log Out
@@ -35,12 +33,5 @@
         </div>
       </li>
     </ul>
-    <%= form_tag user_profile_index_path(id: params[:user_id]), class: "form-inline my-2 pt-3 my-lg-0", method: :get do %>
-    <p>
-      <%= text_field_tag :query, params[:query], placeholder: "Search Users" %>
-      <%= submit_tag "Search", class: "btn btn-outline-success ml-3 my-2 my-sm-0" %>
-    </p>
-    <% end %>
-
   </div>
 </nav>

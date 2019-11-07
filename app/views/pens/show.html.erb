@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @pen.name %>
+</p>
+
+<p>
+  <strong>Lease:</strong>
+  <%= @pen.lease_id %>
+</p>
+
+<table class="table table-striped table-bordered table-sm">
+  <thead class="table-light">
+    <tr class="text-center">
+      <th>Bird strikes</th>
+      <th>Seal strikes</th>
+      <th>Skinny</th>
+      <th>Deformities</th>
+      <th>Unknown</th>
+    </tr>
+  </thead>
+
+  <tbody>
+      <tr class="text-center">
+        <td><%= @mortality_totals[:bird_strikes] %></td>
+        <td><%= @mortality_totals[:seal_strikes] %></td>
+        <td><%= @mortality_totals[:skinny] %></td>
+        <td><%= @mortality_totals[:deformities] %></td>
+        <td><%= @mortality_totals[:unknown] %></td>
+      </tr>
+  </tbody>
+</table>
+
+<ul>
+   <% @mortality_totals.each do |k,v| %>
+    <li> <%= "#{k.id2name.split("_").join(" ").capitalize} -  #{v}" %></li>
+  <% end %>
+</ul>
+
+
+
+<%= link_to 'Edit', edit_pen_path(@pen) %> |
+<%= link_to 'Back', pens_path %>

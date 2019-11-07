@@ -1,0 +1,180 @@
+<%= form_with(model: mortality_form, local: true) do |form| %>
+  <% if mortality_form.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(mortality_form.errors.count, "error") %> prohibited this mortality_form from being saved:</h2>
+
+      <ul>
+        <% mortality_form.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+    <div class="row">
+      <div class="col-2">
+        <div class="form-group">
+          <%= label_tag :date, 'Date', class: 'control-label' %><br />
+                <%= form.date_field :report_date, :value => Time.now.strftime('%Y-%m-%d'), class: 'form-control' %>
+            <%# <%= form.date_select :report_date, :placeholder => Date.current, class: 'datepicker' %>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-2">
+        <div class="form-group">
+          <div class="field">
+            <%= form.label :diver_id, "Diver" %>
+            <%# <%= form.select :lease_id, options_from_collection_for_select(@divers, "id", "first_name"), {},  class: 'form-control select' %>
+            <%= form.select :lease_id, options_from_collection_for_select(@leases, "id", "location"), {},  class: 'form-control select' %>
+          </div>
+        </div>
+      </div>
+      <div class="col-2">
+        <div class="form-group">
+          <%= label_tag :email, 'Lease', class: 'control-label' %><br />
+          <%= form.select :lease_id, options_from_collection_for_select(@leases, "id", "location"), {},  class: 'form-control select' %>
+        </div>
+      </div>
+      <div class="col-2">
+        <div class="form-group">
+          <%= label_tag :pen_id, 'Pen', class: 'control-label' %><br />
+          <%= form.select :pen_id, options_from_collection_for_select(@pens, "id", :id), {},  class: 'form-control select' %>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12">
+        <hr>
+        <h3>Mortalities</h3>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-2">
+        <div class="form-group">
+          <%= form.label :bird_strikes, class: 'control-label' %>
+          <%= form.number_field :bird_strikes, class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="col-2">
+        <div class="form-group">
+          <%= form.label :seal_strikes, class: 'control-label' %>
+          <%= form.number_field :seal_strikes, class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="col-2">
+        <div class="form-group">
+          <%= form.label :skinny, class: 'control-label' %>
+          <%= form.number_field :skinny, class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="col-2">
+        <div class="form-group">
+          <%= form.label :deformities, class: 'control-label' %>
+          <%= form.number_field :deformities, class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="col-2">
+        <div class="form-group">
+          <%= form.label :unknown, class: 'control-label' %>
+          <%= form.number_field :unknown, class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="col-6">
+        <div class="form-group">
+          <%= form.label :mort_comments, class: 'control-label' %>
+          <%= form.text_area :mort_comments, class: 'form-control' %>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12">
+        <hr>
+        <hr>
+        <h3>Net Conditions</h3>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-2 mt-4">
+        <div class="form-group">
+        <div class="field">
+            <%= label_tag :shallow_rot, 'Shallow Rot', class: 'control-label' %><br />
+            <%= form.select :shallow_rot, ((0..5).map {|i| i }), {}, class: 'form-control' %>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-2 mt-4">
+        <div class="form-group">
+          <div class="field">
+            <%= label_tag :deep_rot, 'Deep Rot', class: 'control-label' %><br />
+            <%= form.select :deep_rot, ((0..5).map {|i| i }), {}, class: 'form-control' %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <div class="row">
+    <div class="col-2 mt-4">
+      <div class="form-group">
+        <div class="field">
+          <%= label_tag :missing_weights, 'Missing Weights', class: 'control-label' %><br />
+          <%= form.select :missing_weights, ((0..5).map {|i| i }), {}, class: 'form-control' %>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="col-2 mt-4">
+      <div class="form-group">
+        <div class="field">
+          <%= label_tag :skin_burn, 'Skin burn/Lesion', class: 'control-label' %><br />
+          <%= form.select :skin_burn, ((0..5).map {|i| i }), {}, class: 'form-control' %>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="col-2 mt-4">
+      <div class="form-group">
+        <div class="field">
+          <%= label_tag :fish_rub, 'Fish Rub', class: 'control-label' %><br />
+          <%= form.select :fish_rub, ((0..5).map {|i| i }), {}, class: 'form-control' %>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-2 mt-4">
+      <div class="form-group">
+        <div class="field">
+          <%= label_tag :probe_cleaned, 'Probe Cleaned', class: 'control-label' %><br />
+          <%= form.select :probe_cleaned, (["Y", "N"].map {|i| i }), {}, class: 'form-control' %>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 mt-4">
+      <div class="form-group">
+        <div class="field">
+          <%= label_tag :observations, 'Observations', class: 'control-label' %><br />
+          <%= form.text_area :observations, class: 'form-control'%>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="actions">
+    <%= form.submit "Submit", class:" btn btn-primary" %>
+  </div>
+<% end %>

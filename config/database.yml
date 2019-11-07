@@ -1,6 +1,6 @@
 development:
   adapter: mysql2
-  database: elsocial
+  database: diver
   host: localhost
   username: root
   password: password
@@ -10,7 +10,7 @@ development:
 
 test:
   adapter: mysql2
-  database: elsocial_test
+  database: diver_test
   host: localhost
   username: root
   password: password

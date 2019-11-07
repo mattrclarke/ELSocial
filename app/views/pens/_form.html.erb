@@ -1,0 +1,34 @@
+<%= form_with(model: pen, local: true) do |form| %>
+  <% if pen.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(pen.errors.count, "error") %> prohibited this pen from being saved:</h2>
+
+      <ul>
+        <% pen.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="row">
+    <div class="col-2">
+      <div class="form-group">
+        <%= label_tag :date, 'Date', class: 'control-label' %><br />
+        <%= form.date_field :report_date,:value => Time.now.strftime('%Y-%m-%d'), class: 'form-control' %>
+          <%# <%= form.date_select :report_date, :placeholder => Date.current, class: 'datepicker' %>
+      </div>
+    </div>
+    <div class="col-2">
+      <div class="form-group">
+        <%= label_tag :email, 'Lease', class: 'control-label' %><br />
+        <%= form.select :lease_id, options_from_collection_for_select(@leases, "id", "location"), {},  class: 'form-control select' %>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="actions">
+    <%= form.submit "Submit", class: 'btn btn-primary' %>
+  </div>
+<% end %>

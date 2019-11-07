@@ -1,0 +1,119 @@
+<%= form_with(model: pen, local: true) do |form| %>
+  <% if pen.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(pen.errors.count, "error") %> prohibited this pen from being saved:</h2>
+
+      <ul>
+        <% pen.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="row">
+    <div class="col-2">
+      <div class="form-group">
+        <%= label_tag :date, 'Date', class: 'control-label' %><br />
+              <%= form.date_field :report_date, :value => Time.now.strftime('%Y-%m-%d'), class: 'form-control' %>
+          <%# <%= form.date_select :report_date, :placeholder => Date.current, class: 'datepicker' %>
+      </div>
+    </div>
+  </div>
+
+    <div class="row">
+      <div class="col-2">
+        <div class="form-group">
+          <div class="field">
+            <%= form.label :diver_id, "Diver" %>
+            <%# <%= form.select :lease_id, options_from_collection_for_select(@divers, "id", "first_name"), {},  class: 'form-control select' %>
+            <%= form.select :lease_id, options_from_collection_for_select(@leases, "id", "location"), {},  class: 'form-control select' %>
+          </div>
+        </div>
+      </div>
+      <div class="col-2">
+        <div class="form-group">
+          <%= label_tag :email, 'Lease', class: 'control-label' %><br />
+          <%= form.select :lease_id, options_from_collection_for_select(@leases, "id", "location"), {},  class: 'form-control select' %>
+        </div>
+      </div>
+      <div class="col-2">
+        <div class="form-group">
+          <%= label_tag :pen_id, 'Pen', class: 'control-label' %><br />
+          <%= form.select :pen_id, options_from_collection_for_select(@pens, "id", :id), {},  class: 'form-control select' %>
+        </div>
+      </div>
+      </div>
+
+    <div class="row">
+      <div class="col-3 mt-4">
+        <div class="form-group">
+          <div class="field">
+            <%= label_tag :email, 'Rot < 1m', class: 'control-label' %><br />
+            <%= form.select :shallow_rot, ((0..5).map {|i| i }), {}, class: 'form-control' %>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-3 mt-4">
+        <div class="form-group">
+          <div class="field">
+            <%= label_tag :deep_rot, 'Rot > 1m', class: 'control-label' %><br />
+            <%= form.select :deep_rot, ((0..5).map {|i| i }), {}, class: 'form-control' %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+    <div class="col-3 mt-4">
+      <div class="form-group">
+        <div class="field">
+      <%= label_tag :missing_weights, 'Missing Weights', class: 'control-label' %><br />
+      <%= form.select :missing_weights, ((0..5).map {|i| i }), {}, class: 'form-control' %>
+    </div>
+  </div>
+</div>
+
+
+  <div class="col-3 mt-4">
+    <div class="form-group">
+      <div class="field">
+      <%= label_tag :skin_burn, 'Skin burn/Lesion', class: 'control-label' %><br />
+      <%= form.select :skin_burn, ((0..5).map {|i| i }), {}, class: 'form-control' %>
+    </div>
+  </div>
+</div>
+
+
+  <div class="col-3 mt-4">
+    <div class="form-group">
+      <div class="field">
+      <%= label_tag :fish_rub, 'Fish Rub', class: 'control-label' %><br />
+      <%= form.select :fish_rub, ((0..5).map {|i| i }), {}, class: 'form-control' %>
+    </div>
+  </div>
+</div>
+
+  <div class="col-3 mt-4">
+    <div class="form-group">
+      <div class="field">
+      <%= label_tag :probe_cleaned, 'Probe Cleaned', class: 'control-label' %><br />
+      <%= form.select :probe_cleaned, (["Y", "N"].map {|i| i }), {}, class: 'form-control' %>
+    </div>
+  </div>
+</div>
+</div>
+
+
+  <div class="form-group">
+    <div class="field">
+      <%= label_tag :observations, 'Observations', class: 'control-label' %><br />
+      <%= form.text_area :observations, class: 'form-control'%>
+    </div>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

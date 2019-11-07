@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+<div class="container">
+  <div class="row">
+    <div class="col-12 mt-5">
+      <h1>Lease Name here</h1>
+
+      <p>
+        <%# <%= image_tag "https://maps.googleapis.com/maps/api/staticmap?zoom=17&size=400x300&center='51.501564','-0.141944'&key='AIzaSyAMzTWrMYUotSss4yG-78eJwIUvOqUC2Lc'", alt: "Map" %> %>
+<%= image_tag "https://maps.googleapis.com/maps/api/staticmap?zoom=17&key=AIzaSyAMzTWrMYUotSss4yG-78eJwIUvOqUC2Lc", alt: "Map" %>
+      </p>
+
+      <p>
+        <strong>Location:</strong>
+        <%= @lease.location %>
+      </p>
+
+      <p>
+        <strong>Coordinates:</strong>
+        <%= @lease.coordinates %>
+      </p>
+
+      <ul>
+        <% @pens.each do |pen| %>
+        <li>
+          <%= pen.name %>
+        </li>
+        <% end %>
+      </ul>
+      <%= link_to 'Edit', edit_lease_path(@lease) %> |
+      <%= link_to 'Back', leases_path %>
+    </div>
+  </div>
+</div>

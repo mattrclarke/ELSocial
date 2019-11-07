@@ -1,0 +1,84 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @mortality_form.date %>
+</p>
+
+<p>
+  <strong>Bird strikes:</strong>
+  <%= @mortality_form.bird_strikes %>
+</p>
+
+<p>
+  <strong>Seal strikes:</strong>
+  <%= @mortality_form.seal_strikes %>
+</p>
+
+<p>
+  <strong>Skinny:</strong>
+  <%= @mortality_form.skinny %>
+</p>
+
+<p>
+  <strong>Deformities:</strong>
+  <%= @mortality_form.deformities %>
+</p>
+
+<p>
+  <strong>Unknown:</strong>
+  <%= @mortality_form.unknown %>
+</p>
+
+<p>
+  <strong>Mort comments:</strong>
+  <%= @mortality_form.mort_comments %>
+</p>
+
+<p>
+  <strong>Shallow rot:</strong>
+  <%= @mortality_form.shallow_rot %>
+</p>
+
+<p>
+  <strong>Deep rot:</strong>
+  <%= @mortality_form.deep_rot %>
+</p>
+
+<p>
+  <strong>Missing weights:</strong>
+  <%= @mortality_form.missing_weights %>
+</p>
+
+<p>
+  <strong>Skin burn:</strong>
+  <%= @mortality_form.skin_burn %>
+</p>
+
+<p>
+  <strong>Fish rub:</strong>
+  <%= @mortality_form.fish_rub %>
+</p>
+
+<p>
+  <strong>Probe cleaned:</strong>
+  <%= @mortality_form.probe_cleaned %>
+</p>
+
+<p>
+  <strong>Observations:</strong>
+  <%= @mortality_form.observations %>
+</p>
+
+<p>
+  <strong>Pen:</strong>
+  <%= @mortality_form.pen_id %>
+</p>
+
+<p>
+  <strong>Lease:</strong>
+  <%= @mortality_form.lease_id %>
+</p>
+
+<%= link_to 'Edit', edit_mortality_form_path(@mortality_form) %> |
+<%= link_to 'Back', mortality_forms_path %>

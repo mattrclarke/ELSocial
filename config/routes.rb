@@ -1,10 +1,14 @@
 Rails.application.routes.draw do
+
+  resources :mortality_forms
+  resources :pens
   root "user_sessions#new"
   resource :user_sessions do
     get :new
     get :success
   end
 
+  resources :leases
   resources :users, only: [:new, :create] do
     resources :profile, only: [:show, :index, :edit, :update]
     resources :posts, only: [:create]

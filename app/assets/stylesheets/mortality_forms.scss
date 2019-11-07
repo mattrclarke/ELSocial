@@ -1,0 +1,21 @@
+// Place all the styles related to the MortalityForms controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+th.rotate {
+  /* Something you can count on */
+  height: 100px;
+  white-space: nowrap;
+}
+
+th.rotate > div {
+  transform:
+    /* Magic Numbers */
+    translate(10px, 5px)
+    /* 45 is really 360 - 45 */
+    rotate(315deg);
+  width: 30px;
+}
+th.rotate > div > span {
+  padding: 5px 10px;
+}
