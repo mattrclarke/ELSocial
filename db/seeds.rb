@@ -1,4 +1,35 @@
-test_user = User.create(email: "foo@bar.com", password: 'password')
+test_user = User.create(email: "a@a.com", password: 'a')
+
+5.times do |x|
+  lease = Lease.create(location: "BC3#{x}")
+  pen = Pen.create(lease: lease, name: "Lorem#{x}")
+end
+
+lease = Lease.first
+pen = Pen.first
+
+7.times do |x|
+  5.times do |y|
+    MortalityForm.create(lease: lease, pen: pen,
+     date: DateTime.current - x.days,
+     bird_strikes: Random.rand(50),
+     seal_strikes: Random.rand(50),
+     skinny: Random.rand(50),
+     deformities: Random.rand(50),
+     unknown: Random.rand(50),
+     mort_comments: Random.rand(50),
+     shallow_rot: Random.rand(50),
+     deep_rot: Random.rand(50),
+     missing_weights: Random.rand(50),
+     skin_burn: Random.rand(50),
+     fish_rub: Random.rand(50),
+     probe_cleaned: Random.rand(1),
+     observations: Random.rand(50)
+    )
+  end
+end
+
+
 profile = Profile.create(
   user_id: test_user.id,
   first_name: "Matt",

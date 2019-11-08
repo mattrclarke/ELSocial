@@ -8,7 +8,23 @@ class PensController < ApplicationController
 
   # GET /pens/1
   def show
-    @mortality_totals ||= MortalitySearcher.new(
+
+causes = [ :bird_strikes, :seal_strikes, :skinny, :deformities, :unknown ]
+dates = MortalityForm.all.group_by{|x| x.date}
+
+all_dates = MortalityForm.all.collect{|x| x.date}.uniq
+
+@causes = causes.map { |cause| { name: cause.id2name.split("_").join(" ").capitalize, data: dates.map{ |date, v| [[date.strftime("%Y-%m-%d"), v[0][cause]] ] }.sum   } }
+
+# dates.each{ |date| [date.to_s]  }
+#
+#     @causes = dates.keys.map do |date|
+#       causes.map do |cause|
+#         {name: cause.to_s, data: [date.to_s, dates[date].map{ |x| x[cause]}.sum] }
+#       end
+#     end
+
+    @mortalities ||= MortalitySearcher.new(
         start_date: Date.current,
         end_date: Date.current
       ).run
@@ -75,11 +91,12 @@ class PensController < ApplicationController
 
     def totals
       {
-        bird_strikes: @mortality_totals.map{|total| total.bird_strikes}.sum,
-        seal_strikes: @mortality_totals.map{|total| total.seal_strikes}.sum,
-        skinny: @mortality_totals.map{|total| total.skinny}.sum,
-        deformities: @mortality_totals.map{|total| total.deformities}.sum,
-        unknown: @mortality_totals.map{|total| total.unknown}.sum
+
+        bird_strikes: @mortalities.map{|total| total.bird_strikes}.sum,
+        seal_strikes: @mortalities.map{|total| total.seal_strikes}.sum,
+        skinny: @mortalities.map{|total| total.skinny}.sum,
+        deformities: @mortalities.map{|total| total.deformities}.sum,
+        unknown: @mortalities.map{|total| total.unknown}.sum
       }
     end
 end

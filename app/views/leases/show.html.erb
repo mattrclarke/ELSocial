@@ -18,10 +18,9 @@
         <strong>Coordinates:</strong>
         <%= @lease.coordinates %>
       </p>
-
-      <ul>
+      <ul class="list-group">
         <% @pens.each do |pen| %>
-        <li>
+        <li class="list-group-item">
           <%= pen.name %>
         </li>
         <% end %>
