@@ -38,45 +38,24 @@
   <% end %>
 </ul>
 
-<% byebug %>
-<%= line_chart @causes %>
-<%# <%= line_chart MortalityForm.all.group(:bird_strikes).group_by_day(:date).count %> %>
-<%= line_chart [
-    {
-      name: "bird_strikes",
-      data: [
-        ["08 Nov 2019", 1],
-        ['09 Nov 2019', 43],
-        ['10 Nov 2019', 23],
-        ['11 Nov 2019', 52],
-        ['12 Nov 2019', 33],
-        ['13 Nov 2019', 52],
-      ]
-    },
-    {
-      name: "seal_strikes",
-      data: [
-        ["08 Nov 2019", 10],
-        ['09 Nov 2019', 23],
-        ['10 Nov 2019', 16],
-        ['11 Nov 2019', 17],
-        ['12 Nov 2019', 35],
-        ['13 Nov 2019', 28],
-      ]
-    },
-    {
-      name: "Skinny",
-      data: [
-        ["08 Nov 2019", 25],
-        ['09 Nov 2019', 63],
-        ['10 Nov 2019', 5],
-        ['11 Nov 2019', 27],
-        ['12 Nov 2019', 35],
-        ['13 Nov 2019', 28],
-      ]
-    }
-  ]
-     %>
+<div class="row">
+  <div class="col-md-12 mb-5">
+    <%= line_chart @causes %>
+  </div>
+  <div class="col-md-6 mb-5 mt-5">
+    <%= pie_chart  @mortality_totals %>
+  </div>
+  <div class="col-md-6 mb-5 mt-5">
+    <%= column_chart @causes %>
+  </div>
+  <div class="col-md-12 mb-5 mt-5">
+    <%= area_chart @causes %>
+    <div class="col-md-6 mt-5 mb-5">
+      <%= bar_chart @causes %>
+    </div>
+  </div>
+</div>
+  <%# <%= scatter_chart @causes %>
 
 
 <%= link_to 'Edit', edit_pen_path(@pen) %> |
