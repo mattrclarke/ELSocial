@@ -2,8 +2,8 @@ Rails.application.routes.draw do
 
   resources :mortality_forms
   resources :pens
-  # root "user_sessions#new"
-   root "leases#index"
+  root "user_sessions#new"
+   # root "leases#index"
   resource :user_sessions do
     get :new
     get :success

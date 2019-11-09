@@ -57,6 +57,8 @@ ActiveRecord::Schema.define(version: 2019_11_07_085518) do
 
   create_table "pens", force: :cascade do |t|
     t.string "name"
+    t.string "latitude"
+    t.string "longitude"
     t.bigint "lease_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
