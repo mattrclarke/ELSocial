@@ -5,6 +5,7 @@ development:
   username: root
   password: password
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  encoding: unicode
   # encoding: utf8mb4
   # port: 3306
 
@@ -15,5 +16,6 @@ test:
   username: root
   password: password
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  encoding: unicode
   # encoding: utf8mb4
   # port: 3306
