@@ -79,7 +79,7 @@ all_dates = MortalityForm.all.collect{|x| x.date}.uniq
 
     # Only allow a trusted parameter "white list" through.
     def pen_params
-      params.require(:pen).permit(:name, :lease_id)
+      params.require(:pen).permit(:name, :lease_id, :latitude, :longitude)
     end
 
     def totals

@@ -19,6 +19,21 @@
           <%# <%= form.date_select :report_date, :placeholder => Date.current, class: 'datepicker' %>
       </div>
     </div>
+
+    <div class="form-group">
+      <div class="field">
+        <%= form.label :latitude %>
+        <%= form.text_field :latitude, class: 'form-control'  %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="field">
+        <%= form.label :longitude %>
+        <%= form.text_field :longitude, class: 'form-control'  %>
+      </div>
+    </div>
+
     <div class="col-2">
       <div class="form-group">
         <%= label_tag :email, 'Lease', class: 'control-label' %><br />
