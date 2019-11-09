@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :user do
-    email { Faker::Internet.email }
+    email {"a@a.com" }
     trait :with_profile do
       association :profile, :with_feed
     end
