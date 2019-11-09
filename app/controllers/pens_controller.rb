@@ -8,29 +8,22 @@ class PensController < ApplicationController
 
   # GET /pens/1
   def show
-
 causes = [ :bird_strikes, :seal_strikes, :skinny, :deformities, :unknown ]
 dates = MortalityForm.all.group_by{|x| x.date}
 
+@reports = MortalityForm.all.group_by{|x| x.date}
 all_dates = MortalityForm.all.collect{|x| x.date}.uniq
 
 @causes = causes.map { |cause| { name: cause.id2name.split("_").join(" ").capitalize, data: dates.map{ |date, v| [[date.strftime("%Y-%m-%d"), v[0][cause]] ] }.sum   } }
 
-# dates.each{ |date| [date.to_s]  }
-#
-#     @causes = dates.keys.map do |date|
-#       causes.map do |cause|
-#         {name: cause.to_s, data: [date.to_s, dates[date].map{ |x| x[cause]}.sum] }
-#       end
-#     end
+@mortalities ||= MortalitySearcher.new(
+  start_date: Date.current,
+  end_date: Date.current
+).run
+@mortality_totals = totals
 
-    @mortalities ||= MortalitySearcher.new(
-        start_date: Date.current,
-        end_date: Date.current
-      ).run
-      @mortality_totals = totals
+@mortality_forms = MortalityForm.all
 
-      @mortality_forms = MortalityForm.all
   end
 
   # GET /pens/new

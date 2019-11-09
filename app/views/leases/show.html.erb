@@ -1,32 +1,72 @@
 <p id="notice"><%= notice %></p>
-<div class="container">
   <div class="row">
-    <div class="col-12 mt-5">
-      <h1>Lease Name here</h1>
+    <div class="col-12">
 
-      <p>
-        <%# <%= image_tag "https://maps.googleapis.com/maps/api/staticmap?zoom=17&size=400x300&center='51.501564','-0.141944'&key='AIzaSyAMzTWrMYUotSss4yG-78eJwIUvOqUC2Lc'", alt: "Map" %> %>
-<%= image_tag "https://maps.googleapis.com/maps/api/staticmap?zoom=17&key=AIzaSyAMzTWrMYUotSss4yG-78eJwIUvOqUC2Lc", alt: "Map" %>
-      </p>
-
-      <p>
-        <strong>Location:</strong>
-        <%= @lease.location %>
-      </p>
-
-      <p>
-        <strong>Coordinates:</strong>
-        <%= @lease.coordinates %>
-      </p>
-      <ul class="list-group">
-        <% @pens.each do |pen| %>
-        <li class="list-group-item">
-          <%= pen.name %>
+      <h1><%= @lease.location %></h1>
+      <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Details</a>
         </li>
-        <% end %>
+        <li class="nav-item">
+          <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Pens</a>
+        </li>
+        <!-- <li class="nav-item">
+          <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Contact</a>
+        </li> -->
       </ul>
-      <%= link_to 'Edit', edit_lease_path(@lease) %> |
-      <%= link_to 'Back', leases_path %>
+      <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+          <div class="row">
+          <div class="col-md-12 mt-4">
+          <p>
+            <strong>Latitude:</strong>
+            <%= @lease.latitude %>
+          </p>
+          <p>
+            <strong>Longitude:</strong>
+            <%= @lease.longitude %>
+          </p>
+          </div>
+          </div>
+        </div>
+        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+          <h4>Pens</h4>
+          <div class="row">
+            <div class="col-md-6">
+              <ul class="list-group">
+                <% @pens.each do |pen| %>
+                  <%= link_to pen do |x| %>
+                  <li class="list-group-item">
+                   <%= pen.name %>
+                  </li>
+                  <% end %>
+                <% end %>
+              </ul>
+            </div>
+            <div class="col-md-6">
+              <div id="map" style='width: 100%; height: 400px;'></div>
+            </div>
+            </div>
+        </div>
+      </div>
     </div>
   </div>
-</div>
+  <%= link_to 'Edit', edit_lease_path(@lease) %> |
+  <%= link_to 'Back', leases_path %>
+
+
+
+<script>
+  // Initialize and add the map
+  function initMap() {
+  // The location of Uluru
+  var uluru = {lat: -25.344, lng: 131.036};
+  var uluru_2 = {lat: -22.344, lng: 119.036};
+  // The map, centered at Uluru
+  var map = new google.maps.Map(
+  document.getElementById('map'), {zoom: 4, center: uluru});
+  // The marker, positioned at Uluru
+  var markers = new google.maps.Marker({position: uluru_2, map: map});
+  var marker = new google.maps.Marker({position: uluru, map: map});
+  }
+</script>

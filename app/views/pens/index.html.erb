@@ -1,29 +1,48 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Pens</h1>
+<div class="row">
+  <div class="col-md-6">
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Lease</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Lease</th>
+        </tr>
+      </thead>
 
-  <tbody>
-    <% @pens.each do |pen| %>
-      <tr>
-        <td><%= pen.name %></td>
-        <td><%= pen.lease_id %></td>
-        <td><%= link_to 'Show', pen %></td>
-        <td><%= link_to 'Edit', edit_pen_path(pen) %></td>
-        <td><%= link_to 'Destroy', pen, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+      <tbody>
+        <% @pens.each do |pen| %>
+          <tr>
+            <td><%= link_to pen.name, pen %></td>
+            <td><%= link_to pen.lease_id, pen.lease %></td>
+            <td><%= link_to 'Edit', edit_pen_path(pen) %></td>
+            <td><%= link_to 'Destroy', pen, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+  </div>
+</div>
 
 <br>
 
 <%= link_to 'New Pen', new_pen_path %>
+
+
+<script>
+  // Initialize and add the map
+  function initMap() {
+  // The location of Uluru
+  var uluru = {lat: -25.344, lng: 131.036};
+  var uluru_2 = {lat: -22.344, lng: 119.036};
+  // The map, centered at Uluru
+  var map = new google.maps.Map(
+  document.getElementById('map'), {zoom: 4, center: uluru});
+  // The marker, positioned at Uluru
+  var markers = new google.maps.Marker({position: uluru_2, map: map});
+  var marker = new google.maps.Marker({position: uluru, map: map});
+  }
+</script>

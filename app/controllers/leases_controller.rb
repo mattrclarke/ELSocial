@@ -57,6 +57,6 @@ class LeasesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def lease_params
-      params.require(:lease).permit(:location, :coordinates)
+      params.require(:lease).permit(:location, :latitude, :longitude)
     end
 end

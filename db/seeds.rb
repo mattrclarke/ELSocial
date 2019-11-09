@@ -1,8 +1,13 @@
 test_user = User.create(email: "a@a.com", password: 'a')
 
+lat = 0.000
+lon = 0.000
 5.times do |x|
-  lease = Lease.create(location: "BC3#{x}")
+  lat = lat + 0.001
+  lon = lon + 0.001
+  lease = Lease.create(location: "BC3#{x}", latitude: -25.340 + lat, longitude: 131.030 + lon)
   pen = Pen.create(lease: lease, name: "Lorem#{x}")
+  # LeasePen.create(lease:lease, pen:pen)
 end
 
 lease = Lease.first

@@ -1,19 +1,19 @@
 development:
-  adapter: mysql2
+  adapter: postgresql
   database: diver
   host: localhost
   username: root
   password: password
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  encoding: utf8mb4
-  port: 3306
+  # encoding: utf8mb4
+  # port: 3306
 
 test:
-  adapter: mysql2
+  adapter: postgresql
   database: diver_test
   host: localhost
   username: root
   password: password
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  encoding: utf8mb4
-  port: 3306
+  # encoding: utf8mb4
+  # port: 3306

@@ -4,7 +4,7 @@ RSpec.describe "leases/edit", type: :view do
   before(:each) do
     @lease = assign(:lease, Lease.create!(
       :location => "MyString",
-      :coordinates => "MyString"
+
     ))
   end
 
@@ -15,7 +15,7 @@ RSpec.describe "leases/edit", type: :view do
 
       assert_select "input[name=?]", "lease[location]"
 
-      assert_select "input[name=?]", "lease[coordinates]"
+
     end
   end
 end

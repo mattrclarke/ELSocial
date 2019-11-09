@@ -12,7 +12,10 @@
 
 ActiveRecord::Schema.define(version: 2019_11_07_085518) do
 
-  create_table "feeds", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "feeds", force: :cascade do |t|
     t.bigint "profile_id", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -21,26 +24,15 @@ ActiveRecord::Schema.define(version: 2019_11_07_085518) do
     t.index ["user_id"], name: "index_feeds_on_user_id"
   end
 
-  create_table "leases", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  create_table "leases", force: :cascade do |t|
     t.string "location"
-    t.string "coordinates"
+    t.string "latitude"
+    t.string "longitude"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "mortalities", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
-    t.integer "bird_strikes"
-    t.integer "seal_strikes"
-    t.integer "skinny"
-    t.integer "deformities"
-    t.integer "unknown"
-    t.bigint "pen_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["pen_id"], name: "index_mortalities_on_pen_id"
-  end
-
-  create_table "mortality_forms", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  create_table "mortality_forms", force: :cascade do |t|
     t.datetime "date"
     t.integer "bird_strikes"
     t.integer "seal_strikes"
@@ -63,15 +55,15 @@ ActiveRecord::Schema.define(version: 2019_11_07_085518) do
     t.index ["pen_id"], name: "index_mortality_forms_on_pen_id"
   end
 
-  create_table "pens", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  create_table "pens", force: :cascade do |t|
     t.string "name"
-    t.bigint "lease_id", null: false
+    t.bigint "lease_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["lease_id"], name: "index_pens_on_lease_id"
   end
 
-  create_table "posts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  create_table "posts", force: :cascade do |t|
     t.string "title"
     t.string "content"
     t.string "attachment"
@@ -84,7 +76,7 @@ ActiveRecord::Schema.define(version: 2019_11_07_085518) do
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
-  create_table "profiles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  create_table "profiles", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
     t.bigint "user_id", null: false
@@ -95,7 +87,7 @@ ActiveRecord::Schema.define(version: 2019_11_07_085518) do
     t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
-  create_table "relationships", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  create_table "relationships", force: :cascade do |t|
     t.integer "follower_id"
     t.integer "followed_id"
     t.datetime "created_at", precision: 6, null: false
@@ -105,7 +97,7 @@ ActiveRecord::Schema.define(version: 2019_11_07_085518) do
     t.index ["follower_id"], name: "index_relationships_on_follower_id"
   end
 
-  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  create_table "users", force: :cascade do |t|
     t.string "email", null: false
     t.string "crypted_password"
     t.string "salt"
@@ -116,7 +108,6 @@ ActiveRecord::Schema.define(version: 2019_11_07_085518) do
 
   add_foreign_key "feeds", "profiles"
   add_foreign_key "feeds", "users"
-  add_foreign_key "mortalities", "pens"
   add_foreign_key "mortality_forms", "leases"
   add_foreign_key "mortality_forms", "pens"
   add_foreign_key "pens", "leases"
