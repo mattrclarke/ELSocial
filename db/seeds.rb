@@ -5,8 +5,8 @@ lon = 0.000
 5.times do |x|
   lat = lat + 0.001
   lon = lon + 0.001
-  lease = Lease.create(location: "BC3#{x}")
-  pen = Pen.create(lease: lease, name: "Lorem#{x}",  latitude: -25.340 + lat, longitude: 131.030 + lon)
+  lease = Lease.create(location: Faker::Ancient.god)
+  pen = Pen.create(lease: lease, name: Faker::Ancient.titan,  latitude: -25.340 + lat, longitude: 131.030 + lon)
   # LeasePen.create(lease:lease, pen:pen)
 end
 
@@ -35,13 +35,13 @@ pen = Pen.first
 end
 
 
-# profile = Profile.create(
-#   user_id: test_user.id,
-#   first_name: "Matt",
-#   last_name: "Clarke",
-#   about_me: "test"
-#
-# )
+profile = Profile.create(
+  user_id: test_user.id,
+  first_name: "Matt",
+  last_name: "Clarke",
+  about_me: "test"
+
+)
 # feed = Feed.create(profile_id: profile.id, user_id: test_user.id)
 
 # 50.times do |index|

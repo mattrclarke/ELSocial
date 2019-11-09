@@ -1,7 +1,7 @@
 class CreateMortalityForms < ActiveRecord::Migration[6.0]
   def change
     create_table :mortality_forms do |t|
-      t.datetime :date
+      t.date :date
       t.integer :bird_strikes
       t.integer :seal_strikes
       t.integer :skinny
@@ -17,6 +17,7 @@ class CreateMortalityForms < ActiveRecord::Migration[6.0]
       t.text :observations
       t.references :pen, null: false, foreign_key: true
       t.references :lease, null: false, foreign_key: true
+      t.references :diver, null: false, foreign_key: true
 
       t.timestamps
     end

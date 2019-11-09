@@ -1,146 +1,194 @@
 <p id="notice"><%= notice %></p>
-
-<h2>
-  <strong>Pen:</strong>
-  <%= @pen.name %>
-</h2>
-
-<h4>
-  <strong>Lease:</strong>
-  <%= @pen.lease_id %>
-</h4>
-
 <div class="row">
-  <div class="col-md-12 mt-4">
-  <p>
-    <strong>Latitude:</strong>
-    <%= @lease.latitude %>
-  </p>
-  <p>
-    <strong>Longitude:</strong>
-    <%= @lease.longitude %>
-  </p>
-  </div>
-</div>
+  <div class="col-12">
 
-<div class="col-md-6">
-  <table class="table table-striped table-bordered table-sm">
-    <thead class="table-light">
-      <tr class="text-center">
-        <th>Bird strikes</th>
-        <th>Seal strikes</th>
-        <th>Skinny</th>
-        <th>Deformities</th>
-        <th>Unknown</th>
-      </tr>
-    </thead>
+    <h1><%= @pen.name %></h1>
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" id="detail-tab" data-toggle="tab" href="#details" role="tab" aria-controls="details" aria-selected="true">Details</a>
+      </li>
 
-    <tbody>
-        <tr class="text-center">
-          <td><%= @mortality_totals[:bird_strikes] %></td>
-          <td><%= @mortality_totals[:seal_strikes] %></td>
-          <td><%= @mortality_totals[:skinny] %></td>
-          <td><%= @mortality_totals[:deformities] %></td>
-          <td><%= @mortality_totals[:unknown] %></td>
-        </tr>
-    </tbody>
-  </table>
-</div>
+      <li class="nav-item">
+        <a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="false">Charts</a>
+      </li>
 
-<div class="col-md-12 mb-5">
-  <h5>Daily Report</h5>
-  <%= line_chart @causes %>
-</div>
+      <li class="nav-item">
+        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Reports</a>
+      </li>
 
-<ul>
-   <% @mortality_totals.each do |k,v| %>
-    <li> <%= "#{k.id2name.split("_").join(" ").capitalize} -  #{v}" %></li>
-  <% end %>
-</ul>
+    </ul>
+    <div class="tab-content" id="myTabContent">
 
-<div class="row">
-  <div class="col-md-12 mb-5">
-    <%= line_chart @causes %>
-  </div>
-  <div class="col-md-6 mb-5 mt-5">
-    <%= pie_chart  @mortality_totals %>
-  </div>
-  <div class="col-md-6 mb-5 mt-5">
-    <%= column_chart @causes %>
-  </div>
-  <div class="col-md-12 mb-5 mt-5">
-    <%= area_chart @causes %>
-    <div class="col-md-6 mt-5 mb-5">
-      <%= bar_chart @causes %>
+      <div class="tab-pane fade show active" id="details" role="tabpanel" aria-labelledby="details-tab">
+        <div class="row">
+
+
+          <!-- <ul> -->
+             <%# <% @mortality_totals.each do |k,v| %>
+               <%# <%= "#{k.id2name.split("_").join(" ").capitalize} -  #{v}" %>
+            <%# <% end %>
+          <!-- </ul> -->
+
+          <div class="col-md-6 mt-4">
+            <p>
+              <strong>Lease:</strong>
+              <%= @pen.lease.location %>
+            </p>
+            <p>
+              <strong>Latitude:</strong>
+              <%= @pen.latitude %>
+            </p>
+            <p>
+              <strong>Longitude:</strong>
+              <%= @pen.longitude %>
+            </p>
+
+            <h4> Total Mortalities:</h4>
+
+            <table class="table table-striped table-bordered table-sm">
+              <thead class="table-light">
+                <tr class="text-center">
+                  <th>Bird strikes</th>
+                  <th>Seal strikes</th>
+                  <th>Skinny</th>
+                  <th>Deformities</th>
+                  <th>Unknown</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr class="text-center">
+                  <td><%= @mortality_totals[:bird_strikes] %></td>
+                  <td><%= @mortality_totals[:seal_strikes] %></td>
+                  <td><%= @mortality_totals[:skinny] %></td>
+                  <td><%= @mortality_totals[:deformities] %></td>
+                  <td><%= @mortality_totals[:unknown] %></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="col-md-6 mt-4">
+            <div id="map" style='width: 100%; height: 400px;'></div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="tab-pane fade" id="home" role="tabpanel" aria-labelledby="home-tab">
+        <div class="row">
+          <div class="col-md-12 mb-5">
+            <%= line_chart @causes %>
+          </div>
+          <div class="col-md-6 mb-5 mt-5">
+            <%= pie_chart  @mortality_totals %>
+          </div>
+          <div class="col-md-6 mb-5 mt-5">
+            <%= column_chart @causes %>
+          </div>
+          <div class="col-md-12 mb-5 mt-5">
+            <%= area_chart @causes %>
+            <!-- <div class="col-md-12 mt-5 mb-5"> -->
+              <%# <%= bar_chart @causes %>
+            <!-- </div> -->
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+        <div class="row">
+          <div class="col-md-12 mt-4">
+            <h2>Mortaility Reports</h2>
+            <hr>
+          </div>
+
+          <div class="col-md-12">
+            <ul class="list-group">
+            <% @reports.each do |key, rep| %>
+              <div class="col-md-12 mt-4">
+              <h4>Report filed on - <%= key %></h4>
+              <table class="table table-striped table-bordered table-sm">
+                <thead class="table-light">
+                  <tr>
+                    <th class="rotate"><div><span>Lease</span></div></th>
+                    <!-- <th class="rotate"><div><span>Pen</span></div></th> -->
+                    <th class="rotate"><div><span>Diver</span></div></th>
+                    <!-- <th class="rotate"><div><span>Date</span></div></th> -->
+                    <th class="rotate"><div><span>Bird strikes</span></div></th>
+                    <th class="rotate"><div><span>Seal strikes</span></div></th>
+                    <th class="rotate"><div><span>Skinny</span></div></th>
+                    <th class="rotate"><div><span>Deformities</span></div></th>
+                    <th class="rotate"><div><span>Unknown</span></div></th>
+                    <!-- <th class="rotate"><div><span>Mort comments</span></div></th> -->
+                    <th class="rotate"><div><span>Shallow rot</span></div></th>
+                    <th class="rotate"><div><span>Deep rot</span></div></th>
+                    <th class="rotate"><div><span>Missing weights</span></div></th>
+                    <th class="rotate"><div><span>Skin burn</span></div></th>
+                    <th class="rotate"><div><span>Fish rub</span></div></th>
+                    <th class="rotate"><div><span>Probe cleaned</span></div></th>
+                    <!-- <th class="rotate"><div><span>Observations</span></div></th> -->
+                    <th colspan="2"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% rep.each do |mortality_form| %>
+                    <tr class="text-center">
+                      <td><%= mortality_form.lease_id %></td>
+                      <%# <%= mortality_form.pen_id %>
+                      <td> <%= mortality_form.pen_id %></td>
+                      <%# <%= mortality_form.date %>
+                      <td><%= mortality_form.bird_strikes %></td>
+                      <td><%= mortality_form.seal_strikes %></td>
+                      <td><%= mortality_form.skinny %></td>
+                      <td><%= mortality_form.deformities %></td>
+                      <td><%= mortality_form.unknown %></td>
+                      <%# <%= mortality_form.mort_comments %>
+                      <td><%= mortality_form.shallow_rot %></td>
+                      <td><%= mortality_form.deep_rot %></td>
+                      <td><%= mortality_form.missing_weights %></td>
+                      <td><%= mortality_form.skin_burn %></td>
+                      <td><%= mortality_form.fish_rub %></td>
+                      <td><%= mortality_form.probe_cleaned %></td>
+                      <%# <%= mortality_form.observations %>
+                      <td><%= link_to 'Show', mortality_form %></td>
+                      <%# <%= link_to 'Edit', edit_mortality_form_path(mortality_form) %>
+                      <td><%= link_to 'Destroy', mortality_form, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                    </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+                <hr>
+              </div>
+                <% end %>
+            </ul>
+          </div>
+          <div class="col-md-6">
+            <div id="map" style='width: 100%; height: 400px;'>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
     </div>
   </div>
-</div>
-  <%# <%= scatter_chart @causes %>
-
-
-
-<h1>Mortalty Reports</h1>
-  <% @reports.each do |key, rep| %>
-<div class="col-md-12">
-<h4>Report filed on - <%= key.strftime("%Y-%m-%d") %></h4>
-<table class="table table-striped table-bordered table-sm">
-  <thead class="table-light">
-    <tr>
-      <th></th>
-      <th class="rotate"><div><span>Lease</span></div></th>
-      <th class="rotate"><div><span>Pen</span></div></th>
-      <th class="rotate"><div><span>Diver</span></div></th>
-      <!-- <th class="rotate"><div><span>Date</span></div></th> -->
-      <th class="rotate"><div><span>Bird strikes</span></div></th>
-      <th class="rotate"><div><span>Seal strikes</span></div></th>
-      <th class="rotate"><div><span>Skinny</span></div></th>
-      <th class="rotate"><div><span>Deformities</span></div></th>
-      <th class="rotate"><div><span>Unknown</span></div></th>
-      <!-- <th class="rotate"><div><span>Mort comments</span></div></th> -->
-      <th class="rotate"><div><span>Shallow rot</span></div></th>
-      <th class="rotate"><div><span>Deep rot</span></div></th>
-      <th class="rotate"><div><span>Missing weights</span></div></th>
-      <th class="rotate"><div><span>Skin burn</span></div></th>
-      <th class="rotate"><div><span>Fish rub</span></div></th>
-      <th class="rotate"><div><span>Probe cleaned</span></div></th>
-      <!-- <th class="rotate"><div><span>Observations</span></div></th> -->
-      <th colspan="2"></th>
-    </tr>
-  </thead>
-
-  <% rep.each do |mortality_form| %>
-  <tbody>
-      <tr class="text-center">
-        <td></td>
-        <td><%= mortality_form.lease_id %></td>
-        <td><%= mortality_form.pen_id %></td>
-        <td><%= mortality_form.pen_id %></td>
-        <%# <%= mortality_form.date %>
-        <td><%= mortality_form.bird_strikes %></td>
-        <td><%= mortality_form.seal_strikes %></td>
-        <td><%= mortality_form.skinny %></td>
-        <td><%= mortality_form.deformities %></td>
-        <td><%= mortality_form.unknown %></td>
-        <%# <%= mortality_form.mort_comments %>
-        <td><%= mortality_form.shallow_rot %></td>
-        <td><%= mortality_form.deep_rot %></td>
-        <td><%= mortality_form.missing_weights %></td>
-        <td><%= mortality_form.skin_burn %></td>
-        <td><%= mortality_form.fish_rub %></td>
-        <td><%= mortality_form.probe_cleaned %></td>
-        <%# <%= mortality_form.observations %>
-        <td><%= link_to 'Show', mortality_form %></td>
-        <%# <%= link_to 'Edit', edit_mortality_form_path(mortality_form) %>
-        <td><%= link_to 'Destroy', mortality_form, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    </tbody>
-    <% end %>
-  </table>
-</div>
-<% end %>
-
 
 
 
 <%= link_to 'Edit', edit_pen_path(@pen) %> |
 <%= link_to 'Back', pens_path %>
+
+
+
+<script>
+  // Initialize and add the map
+  function initMap() {
+  // The location of Uluru
+  var uluru = {lat: -25.344, lng: 131.036};
+  // The map, centered at Uluru
+  var map = new google.maps.Map(
+  document.getElementById('map'), {zoom: 4, center: uluru});
+  // The marker, positioned at Uluru
+  var marker = new google.maps.Marker({position: uluru, map: map});
+  }
+</script>
