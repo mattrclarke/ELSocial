@@ -1,5 +1,9 @@
 @import '~bootstrap/scss/bootstrap';
 
+.btn {
+  color: white !important;
+}
+
 a {
   color: black;
   &:hover {
@@ -24,6 +28,6 @@ a {
 }
 
 .profile-item:hover {
-  box-shadow: 0 0 31px 4px rgba(33,33,33,.2); 
+  box-shadow: 0 0 31px 4px rgba(33,33,33,.2);
   transform: scale(1.05);
 }

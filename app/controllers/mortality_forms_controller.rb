@@ -24,6 +24,7 @@ class MortalityFormsController < ApplicationController
 
   # POST /mortality_forms
   def create
+    byebug
     @mortality_form = MortalityForm.new(mortality_form_params)
 
     if @mortality_form.save
@@ -56,6 +57,6 @@ class MortalityFormsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def mortality_form_params
-      params.require(:mortality_form).permit(:date, :bird_strikes, :seal_strikes, :skinny, :deformities, :unknown, :mort_comments, :shallow_rot, :deep_rot, :missing_weights, :skin_burn, :fish_rub, :probe_cleaned, :observations, :pen_id, :lease_id)
+      params.require(:mortality_form).permit(:date, :bird_strikes, :seal_strikes, :skinny, :deformities, :unknown, :mort_comments, :shallow_rot, :deep_rot, :missing_weights, :skin_burn, :fish_rub, :probe_cleaned, :observations, :pen_id, :lease_id, :diver_id)
     end
 end

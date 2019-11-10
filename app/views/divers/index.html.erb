@@ -26,7 +26,12 @@
         <td><%= diver.secondary_contact %></td>
         <td><%= link_to 'Show', diver %></td>
         <td><%= link_to 'Edit', edit_diver_path(diver) %></td>
-        <td><%= link_to 'Destroy', diver, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+          <%= link_to diver, method: :delete,  data: { confirm: 'Are you sure?' } do |x| %>
+          <%= fa_icon "trash"%>
+          <% end %>
+        </td>
+
       </tr>
     <% end %>
   </tbody>
@@ -34,4 +39,6 @@
 
 <br>
 
-<%= link_to 'New Diver', new_diver_path %>
+<%= link_to new_diver_path, class: "btn btn-primary" do |x| %>
+  Create Diver <%= fa_icon "plus"%>
+<% end %>

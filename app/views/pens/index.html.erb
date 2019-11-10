@@ -22,7 +22,13 @@
             <td><%= pen.latitude %></td>
             <td><%= pen.longitude %></td>
             <td><%= link_to 'Edit', edit_pen_path(pen) %></td>
-            <td><%= link_to 'Destroy', pen, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+            <td>
+              <%= link_to pen, method: :delete,  data: { confirm: 'Are you sure?' } do |x| %>
+              <%= fa_icon "trash"%>
+              <% end %>
+            </td>
+
           </tr>
         <% end %>
       </tbody>
@@ -33,7 +39,10 @@
 
 <br>
 
-<%= link_to 'New Pen', new_pen_path %>
+<%= link_to new_pen_path, class: "btn btn-primary" do |x| %>
+  Create Pen <%= fa_icon "plus"%>
+<% end %>
+
 
 
 <script>

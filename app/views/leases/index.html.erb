@@ -17,7 +17,13 @@
               <% end %>
             </td>
             <td><%= link_to 'Edit', edit_lease_path(lease) %></td>
-            <td><%= link_to 'Destroy', lease, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+            <td>
+              <%= link_to lease, method: :delete,  data: { confirm: 'Are you sure?' } do |x| %>
+              <%= fa_icon "trash"%>
+              <% end %>
+            </td>
+
           </tr>
         <% end %>
       </tbody>
@@ -25,4 +31,7 @@
 
     <br>
 
-    <%= link_to 'New Lease', new_lease_path %>
+
+    <%= link_to new_lease_path, class: "btn btn-primary" do |x| %>
+      Create Lease <%= fa_icon "plus"%>
+    <% end %>

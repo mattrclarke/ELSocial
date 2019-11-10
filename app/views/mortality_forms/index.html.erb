@@ -49,7 +49,13 @@
         <%# <%= mortality_form.observations %>
         <td><%= link_to 'Show', mortality_form %></td>
         <%# <%= link_to 'Edit', edit_mortality_form_path(mortality_form) %>
-        <td><%= link_to 'Destroy', mortality_form, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+        <td>
+          <%= link_to mortality_form, method: :delete,  data: { confirm: 'Are you sure?' } do |x| %>
+          <%= fa_icon "trash"%>
+          <% end %>
+        </td>
+
       </tr>
     <% end %>
         <tr class="text-center">
@@ -138,5 +144,6 @@ var myChart = new Chart(ctx, {
 
 
 <br>
-
-<%= link_to 'New Mortality Form', new_mortality_form_path %>
+<%= link_to new_mortality_form_path , class: "btn btn-primary" do |x| %>
+  New Mortlity Form <%= fa_icon "plus"%>
+<% end %>
