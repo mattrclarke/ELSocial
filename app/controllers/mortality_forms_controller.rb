@@ -14,6 +14,7 @@ class MortalityFormsController < ApplicationController
   def new
     @leases = Lease.all
     @pens = Pen.all
+    @divers = Diver.all
     @mortality_form = MortalityForm.new
   end
 

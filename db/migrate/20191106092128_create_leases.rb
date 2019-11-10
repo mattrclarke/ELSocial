@@ -3,7 +3,7 @@ class CreateLeases < ActiveRecord::Migration[6.0]
     create_table :leases do |t|
       t.string :location
       t.string :latitude
-      t.string :longitude
+      t.string :lon
 
       t.timestamps
     end

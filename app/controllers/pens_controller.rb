@@ -11,9 +11,9 @@ class PensController < ApplicationController
 causes = [ :bird_strikes, :seal_strikes, :skinny, :deformities, :unknown ]
 dates = MortalityForm.all.group_by{|x| x.date}
 
-@reports = MortalityForm.all.group_by{|x| x.date.strftime("%Y-%m-%d")}
+@reports = MortalityForm.all.includes(:diver).group_by{|x| x.date.strftime("%Y-%m-%d")}
 @causes = causes.map { |cause| { name: cause.id2name.split("_").join(" ").capitalize, data: dates.map{ |date, v| [[date.strftime("%Y-%m-%d"), v[0][cause]] ] }.sum   } }
-byebug
+
 @mortalities ||= MortalitySearcher.new(
   start_date: Date.current,
   end_date: Date.current

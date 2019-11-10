@@ -135,7 +135,7 @@
                     <tr class="text-center">
                       <td><%= mortality_form.lease_id %></td>
                       <%# <%= mortality_form.pen_id %>
-                      <td> <%= mortality_form.pen_id %></td>
+                      <td> <%= mortality_form.diver.initials %></td>
                       <%# <%= mortality_form.date %>
                       <td><%= mortality_form.bird_strikes %></td>
                       <td><%= mortality_form.seal_strikes %></td>
@@ -154,7 +154,26 @@
                       <%# <%= link_to 'Edit', edit_mortality_form_path(mortality_form) %>
                       <td><%= link_to 'Destroy', mortality_form, method: :delete, data: { confirm: 'Are you sure?' } %></td>
                     </tr>
+
+
                     <% end %>
+                    <tr class="text-center">
+                      <th>Total</th>
+                      <td></td>
+                      <td><%= rep.map{|total| total.bird_strikes}.sum %></td>
+                      <td><%= rep.map{|total| total.seal_strikes}.sum %></td>
+                      <td><%= rep.map{|total| total.skinny}.sum %></td>
+                      <td><%= rep.map{|total| total.deformities}.sum %></td>
+                      <td><%= rep.map{|total| total.unknown}.sum %></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
                   </tbody>
                 </table>
                 <hr>
@@ -173,18 +192,22 @@
     </div>
   </div>
 
-
-
 <%= link_to 'Edit', edit_pen_path(@pen) %> |
 <%= link_to 'Back', pens_path %>
 
 
 
 <script>
+
+
+  var lat = <%= @pen.latitude %>
+
+  var lng = <%= @pen.longitude %>
+
   // Initialize and add the map
   function initMap() {
   // The location of Uluru
-  var uluru = {lat: -25.344, lng: 131.036};
+  var uluru = {lat: lat, lng: lng};
   // The map, centered at Uluru
   var map = new google.maps.Map(
   document.getElementById('map'), {zoom: 4, center: uluru});

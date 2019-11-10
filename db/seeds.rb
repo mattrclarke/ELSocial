@@ -14,8 +14,18 @@ lease = Lease.first
 pen = Pen.first
 
 7.times do |x|
+  diver = Diver.create(
+    first_name: Faker::Name.first_name,
+    last_name: Faker::Name.last_name,
+    email:  Faker::Internet.email,
+    contact: "00000000",
+    address: "123 test street",
+    secondary_contact: "11111111"
+  )
   5.times do |y|
-    MortalityForm.create(lease: lease, pen: pen,
+
+
+    MortalityForm.create(lease: lease, pen: pen, diver: diver,
      date: DateTime.current - x.days,
      bird_strikes: Random.rand(50),
      seal_strikes: Random.rand(50),

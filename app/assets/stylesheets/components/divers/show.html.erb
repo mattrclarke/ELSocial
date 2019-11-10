@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>First name:</strong>
+  <%= @diver.first_name %>
+</p>
+
+<p>
+  <strong>Last name:</strong>
+  <%= @diver.last_name %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @diver.email %>
+</p>
+
+<p>
+  <strong>Contact:</strong>
+  <%= @diver.contact %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @diver.address %>
+</p>
+
+<p>
+  <strong>Secondary contact:</strong>
+  <%= @diver.secondary_contact %>
+</p>
+
+<%= link_to 'Edit', edit_diver_path(@diver) %> |
+<%= link_to 'Back', divers_path %>

@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
     <h1>Leases</h1>
-    <table>
-      <thead>
+    <table class="table table-striped table-bordered table-sm">
+      <thead class="table-light">
         <tr>
           <th>Location</th>
           <th colspan="3"></th>
@@ -11,8 +11,11 @@
       <tbody>
         <% @leases.each do |lease| %>
           <tr>
-            <td><%= lease.location %></td>
-            <td><%= link_to 'Show', lease %></td>
+            <td>
+              <%= link_to lease do |x| %>
+              <%= lease.location %>
+              <% end %>
+            </td>
             <td><%= link_to 'Edit', edit_lease_path(lease) %></td>
             <td><%= link_to 'Destroy', lease, method: :delete, data: { confirm: 'Are you sure?' } %></td>
           </tr>
