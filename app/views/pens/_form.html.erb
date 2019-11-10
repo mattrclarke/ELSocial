@@ -12,6 +12,15 @@
   <% end %>
 
   <div class="row">
+
+    <div class="col-2">
+      <div class="form-group">
+        <%= label_tag :date, 'Name', class: 'control-label' %><br />
+        <%= form.text_field :name, class: 'form-control'  %>
+          <%# <%= form.date_select :report_date, :placeholder => Date.current, class: 'datepicker' %>
+      </div>
+    </div>
+
     <div class="col-2">
       <div class="form-group">
         <%= label_tag :date, 'Date', class: 'control-label' %><br />
@@ -44,6 +53,6 @@
 
 
   <div class="actions">
-    <%= form.submit "Submit", class: 'btn btn-primary' %>
+    <%= form.submit "Update", class: 'btn btn-primary' %>
   </div>
 <% end %>

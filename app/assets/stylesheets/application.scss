@@ -14,7 +14,10 @@
  *= require_self
  */
  @import "font-awesome";
-
+.space-between {
+    display: flex;
+    justify-content: space-between;
+}
 
  th.rotate {
    /* Something you can count on */

@@ -1,6 +1,14 @@
 class MortalityFormsController < ApplicationController
   before_action :set_mortality_form, only: [:show, :edit, :update, :destroy]
 
+  def search
+
+    start_date = params[:start_date].to_date.beginning_of_day
+    end_date = params[:end_date].to_date.end_of_day
+    records = MortalityForm.where(:created_at => start_date..end_date)
+
+  end
+
   # GET /mortality_forms
   def index
     @mortality_forms = MortalityForm.all

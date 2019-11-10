@@ -38,18 +38,18 @@ ActiveRecord::Schema.define(version: 2019_11_10_030741) do
   create_table "leases", force: :cascade do |t|
     t.string "location"
     t.string "latitude"
-    t.string "longitude"
+    t.string "lon"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "mortality_forms", force: :cascade do |t|
     t.date "date"
-    t.integer "bird_strikes"
-    t.integer "seal_strikes"
-    t.integer "skinny"
-    t.integer "deformities"
-    t.integer "unknown"
+    t.integer "bird_strikes", default: 0
+    t.integer "seal_strikes", default: 0
+    t.integer "skinny", default: 0
+    t.integer "deformities", default: 0
+    t.integer "unknown", default: 0
     t.text "mort_comments"
     t.integer "shallow_rot"
     t.integer "deep_rot"

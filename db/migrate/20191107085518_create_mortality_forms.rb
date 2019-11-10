@@ -2,11 +2,11 @@ class CreateMortalityForms < ActiveRecord::Migration[6.0]
   def change
     create_table :mortality_forms do |t|
       t.date :date
-      t.integer :bird_strikes
-      t.integer :seal_strikes
-      t.integer :skinny
-      t.integer :deformities
-      t.integer :unknown
+      t.integer :bird_strikes, default: 0
+      t.integer :seal_strikes, default: 0
+      t.integer :skinny, default: 0
+      t.integer :deformities, default: 0
+      t.integer :unknown, default: 0
       t.text :mort_comments
       t.integer :shallow_rot
       t.integer :deep_rot
