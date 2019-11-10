@@ -17,8 +17,6 @@ class CreateMortalityForms < ActiveRecord::Migration[6.0]
       t.text :observations
       t.references :pen, null: false, foreign_key: true
       t.references :lease, null: false, foreign_key: true
-      t.references :diver, null: false, foreign_key: true
-
       t.timestamps
     end
   end
