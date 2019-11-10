@@ -32,7 +32,6 @@ class MortalityFormsController < ApplicationController
 
   # POST /mortality_forms
   def create
-    byebug
     @mortality_form = MortalityForm.new(mortality_form_params)
 
     if @mortality_form.save

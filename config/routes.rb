@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'mortality_report/show'
+  get 'mortality_report/report'
   resources :mortality_forms
   resources :pens
   resources :leases

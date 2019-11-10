@@ -1,5 +1,6 @@
 <div class="col-md-12">
   <ul class="list-group">
+
   <% reports.each do |key, rep| %>
     <div class="col-md-12 mt-4">
     <h4>Report filed on - <%= key %></h4>
@@ -23,7 +24,7 @@
           <th class="rotate"><div><span>Fish rub</span></div></th>
           <th class="rotate"><div><span>Probe cleaned</span></div></th>
           <!-- <th class="rotate"><div><span>Observations</span></div></th> -->
-          <th colspan="2"></th>
+          <th colspan="1"></th>
         </tr>
       </thead>
       <tbody>
@@ -48,7 +49,6 @@
             <%# <%= mortality_form.observations %>
             <td><%= link_to 'Show', mortality_form %></td>
             <%# <%= link_to 'Edit', edit_mortality_form_path(mortality_form) %>
-            <td><%= link_to 'Destroy', mortality_form, method: :delete, data: { confirm: 'Are you sure?' } %></td>
           </tr>
 
 
@@ -68,12 +68,12 @@
             <td></td>
             <td></td>
             <td></td>
-            <td></td>
           </tr>
         </tbody>
       </table>
       <hr>
     </div>
       <% end %>
-  </ul>
+    </ul>
+
 </div>

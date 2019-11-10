@@ -14,9 +14,19 @@
  *= require_self
  */
  @import "font-awesome";
+
+td {
+  font-size: 1.2em !important;
+}
+
 .space-between {
     display: flex;
     justify-content: space-between;
+}
+
+.trash-icon {
+  color: #dc3545 !important;
+  border-radius: 25%;
 }
 
  th.rotate {

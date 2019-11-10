@@ -6,7 +6,7 @@
     <h1>Mortality Forms</h1>
     <div>
     <%= link_to new_mortality_form_path , class: "btn btn-primary" do |x| %>
-      New Mortlity Form <%= fa_icon "plus"%>
+      New Mortlity Form <span class="ml-2"><%= fa_icon "plus"%></span>
     <% end %>
     </div>
 
@@ -65,7 +65,7 @@
 
         <td>
           <%= link_to mortality_form, method: :delete,  data: { confirm: 'Are you sure?' } do |x| %>
-          <%= fa_icon "trash"%>
+          <span class="trash-icon"><%= fa_icon "trash"%></span>
           <% end %>
         </td>
 

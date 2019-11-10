@@ -12,8 +12,7 @@ class PensController < ApplicationController
       format.html do
 causes = [ :bird_strikes, :seal_strikes, :skinny, :deformities, :unknown ]
 dates = MortalityForm.all.group_by{|x| x.date}
-byebug
-@reports = MortalityForm.where(date: (Time.now - 1.week)..Time.now).includes(:diver)
+@reports = MortalityForm.where(date: (Time.now - 1.week)..Time.now, pen: @pen).includes(:diver)
 .group_by{|x| x.date.strftime("%Y-%m-%d")}
 @causes = causes.map { |cause| { name: cause.id2name.split("_").join(" ").capitalize, data: dates.map{ |date, v| [[date.strftime("%Y-%m-%d"), v[0][cause]] ] }.sum   } }
 
@@ -46,7 +45,7 @@ end
   def mortality_search
     start_date = params[:search_begin].to_date
     end_date = params[:search_end].to_date
-    @mortality_search ||= MortalityForm.where(date: start_date..end_date).includes(:diver).group_by{|x| x.date.strftime("%Y-%m-%d")}
+    @mortality_search ||= MortalityForm.where(date: start_date..end_date, pen: @pen).includes(:diver).group_by{|x| x.date.strftime("%Y-%m-%d")}
   end
 
   def search

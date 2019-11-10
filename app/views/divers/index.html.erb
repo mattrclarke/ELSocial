@@ -4,8 +4,8 @@
   <div class='col-md-12 space-between'>
     <h1>Divers</h1>
     <div>
-      <%= link_to new_diver_path, class: "btn btn-primary" do |x| %>
-      Create Diver <%= fa_icon "plus"%>
+      <%= link_to new_diver_path, class: "btn btn-success" do |x| %>
+      Create Diver <span class="ml-2"><%= fa_icon "plus"%></span>
       <% end %>
     </div>
 
@@ -14,7 +14,7 @@
 <hr>
 
 
-<table class="table table-striped table-bordered table-sm">
+<table class="table table-striped table-bordered text-center">
   <thead class="table-light">
     <tr>
       <th>First name</th>
@@ -36,15 +36,33 @@
         <td><%= diver.contact %></td>
         <td><%= diver.address %></td>
         <td><%= diver.secondary_contact %></td>
-        <td><%= link_to 'Show', diver %></td>
-        <td><%= link_to 'Edit', edit_diver_path(diver) %></td>
+
         <td>
-          <%= link_to diver, method: :delete,  data: { confirm: 'Are you sure?' } do |x| %>
-          <%= fa_icon "trash"%>
-          <% end %>
+          <div class="btn-group">
+            <%= link_to diver do %>
+            <button type="button" class="btn btn-primary">
+              View
+            </button>
+            <% end %>
+
+            <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <span class="sr-only">Toggle Dropdown</span>
+            </button>
+            <div class="dropdown-menu">
+
+
+              <%= link_to 'Edit', edit_diver_path(diver), class: "dropdown-item" %>
+
+              <div class="dropdown-divider"></div>
+              <%= link_to diver, method: :delete,  data: { confirm: 'Are you sure?' }, class: "dropdown-item" do |x| %>
+                <span class="trash-icon mr-2">Delete</span><span class="trash-icon mr-2"><%= fa_icon "trash"%></span>
+              <% end %>
+            </div>
+          </div>
         </td>
 
       </tr>
+
     <% end %>
   </tbody>
 </table>

@@ -1,0 +1,49 @@
+
+  <div class="col-md-12 mt-4">
+    <h2>Mortaility Reports</h2>
+    <hr>
+  </div>
+
+
+  <div class="row">
+    <div class="col-6">
+      <%= form_tag mortality_report_report_path, class: "form", method: :get, remote: true do |form|%>
+
+      <div class="form-group">
+        <%= label_tag :date, 'Start Date', class: 'control-label' %><br />
+        <%= date_field_tag(:search_begin, (Time.now - 1.week).strftime('%Y-%m-%d'), class: 'form-control') %>
+      </div>
+    </div>
+
+    <div class="col-6">
+      <div class="form-group">
+        <%= label_tag :date, 'End Date', class: 'control-label' %><br />
+              <%= date_field_tag(:search_end, Time.now.strftime('%Y-%m-%d'), class: 'form-control') %>
+          <%# <%= form.date_select :report_date, :placeholder => Date.current, class: 'datepicker' %>
+      </div>
+    </div>
+
+    <div class="col-6">
+      <div class="form-group">
+        <%= label_tag :date, 'Pen', class: 'control-label' %><br />
+        <%= text_field_tag :pen, "", class: 'form-control'  %>
+          <%# <%= form.date_select :report_date, :placeholder => Date.current, class: 'datepicker' %>
+      </div>
+    </div>
+
+    <div class="col-6">
+      <div class="form-group">
+        <%= label_tag :lease_id, 'Diver', class: 'control-label' %><br />
+        <%= text_field_tag(:lease, "", class: 'form-control')  %>
+          <%# <%= form.date_select :report_date, :placeholder => Date.current, class: 'datepicker' %>
+      </div>
+    </div>
+
+
+  <%= submit_tag "Search", class: "btn btn-success ml-3 my-2 my-sm-0" %>
+    <% end %>
+  </div>
+
+<div id="mortality_forms">
+  <%= render 'shared/mortality_reports', reports: @reports%>
+</div>
