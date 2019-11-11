@@ -5,6 +5,10 @@ class MortalityReportController < ApplicationController
   end
 
   def report
+
+    @leases = Lease.all
+    @pens = Pen.all
+
     respond_to do |format|
 
       format.html do
@@ -31,7 +35,17 @@ class MortalityReportController < ApplicationController
   def mortality_search
     start_date = params[:search_begin].to_date
     end_date = params[:search_end].to_date
-    @mortality_search ||= MortalityForm.where(date: start_date..end_date).includes(:diver).group_by{|x| x.date.strftime("%Y-%m-%d")}
+    @mortality_search ||= MortalityForm.where(date: start_date..end_date)
+
+
+    if params[:lease_id] != ""
+      @mortality_search = @mortality_search.where(lease_id: params[:lease_id])
+    end
+
+    if params[:pen_id] != ""
+      @mortality_search = @mortality_search.where(pen_id: params[:pen_id])
+    end
+    @mortality_search.includes(:diver).group_by{|x| x.date.strftime("%Y-%m-%d")}
   end
 
 end

@@ -8,7 +8,7 @@
       <thead class="table-light">
         <tr>
           <th class="rotate"><div><span>Lease</span></div></th>
-          <!-- <th class="rotate"><div><span>Pen</span></div></th> -->
+          <th class="rotate"><div><span>Pen</span></div></th>
           <th class="rotate"><div><span>Diver</span></div></th>
           <!-- <th class="rotate"><div><span>Date</span></div></th> -->
           <th class="rotate"><div><span>Bird strikes</span></div></th>
@@ -24,14 +24,13 @@
           <th class="rotate"><div><span>Fish rub</span></div></th>
           <th class="rotate"><div><span>Probe cleaned</span></div></th>
           <!-- <th class="rotate"><div><span>Observations</span></div></th> -->
-          <th colspan="1"></th>
         </tr>
       </thead>
       <tbody>
         <% rep.each do |mortality_form| %>
           <tr class="text-center">
-            <td><%= mortality_form.lease_id %></td>
-            <%# <%= mortality_form.pen_id %>
+            <td><%= mortality_form.lease.location %></td>
+            <td><%= mortality_form.pen.name %></td>
             <td> <%= mortality_form.diver.initials %></td>
             <%# <%= mortality_form.date %>
             <td><%= mortality_form.bird_strikes %></td>
@@ -47,8 +46,6 @@
             <td><%= mortality_form.fish_rub %></td>
             <td><%= mortality_form.probe_cleaned %></td>
             <%# <%= mortality_form.observations %>
-            <td><%= link_to 'Show', mortality_form %></td>
-            <%# <%= link_to 'Edit', edit_mortality_form_path(mortality_form) %>
           </tr>
 
 
@@ -56,13 +53,12 @@
           <tr class="text-center">
             <th>Total</th>
             <td></td>
+            <td></td>
             <td><%= rep.map{|total| total.bird_strikes}.sum %></td>
             <td><%= rep.map{|total| total.seal_strikes}.sum %></td>
             <td><%= rep.map{|total| total.skinny}.sum %></td>
             <td><%= rep.map{|total| total.deformities}.sum %></td>
             <td><%= rep.map{|total| total.unknown}.sum %></td>
-            <td></td>
-            <td></td>
             <td></td>
             <td></td>
             <td></td>

@@ -23,26 +23,23 @@
 
     <div class="col-6">
       <div class="form-group">
-        <%= label_tag :date, 'Pen', class: 'control-label' %><br />
-        <%= text_field_tag :pen, "", class: 'form-control'  %>
-          <%# <%= form.date_select :report_date, :placeholder => Date.current, class: 'datepicker' %>
+        <%= label_tag :lease_Id, 'Lease', class: 'control-label' %><br />
+        <%= select_tag :lease_id, options_from_collection_for_select(@leases, "id", "location"), :include_blank => "All leases", class: 'form-control select'  %>
       </div>
     </div>
-
     <div class="col-6">
       <div class="form-group">
-        <%= label_tag :lease_id, 'Diver', class: 'control-label' %><br />
-        <%= text_field_tag(:lease, "", class: 'form-control')  %>
-          <%# <%= form.date_select :report_date, :placeholder => Date.current, class: 'datepicker' %>
+        <%= label_tag :pen_id, 'Pen', class: 'control-label' %><br />
+            <%= select_tag :pen_id, options_from_collection_for_select(@pens, "id", "name"), :include_blank => "All pens", class: 'form-control select'  %>
       </div>
     </div>
 
   </div>
 
 
+  <%= submit_tag "Search", class: "btn btn-success" %>
     <% end %>
-    <%= submit_tag "Search", class: "btn btn-success" %>
 
-<div id="mortality_forms">
+<div id="mortality_report">
   <%= render 'shared/mortality_reports', reports: @reports%>
 </div>
