@@ -2,13 +2,27 @@
   <div class="row">
     <div class="col-12">
 
-      <h1><%= @lease.location %></h1>
+      <div class='row'>
+        <div class='col-md-12 space-between'>
+          <div class='space-between h-center'>
+            <%= link_to leases_path, class: "text-primary" do %>
+              <%= fa_icon "arrow-left 2x"%>
+            <% end %>
+            <h1 class="mb-0 ml-3"><%= @lease.location %></h1>
+            </div>
+          <div>
+            <%= link_to edit_lease_path(@lease), class: "btn btn-primary" do |x| %>
+          <%= fa_icon "edit"%><span class="ml-2"> Edit Lease</span>
+            <% end %>
+          </div>
+
+        </div>
+      </div>
+      <hr>
+
       <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item">
-          <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Details</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Pens</a>
+          <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Pens</a>
         </li>
         <!-- <li class="nav-item">
           <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Contact</a>
@@ -17,12 +31,25 @@
       <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 
-                <div class="row">
-          <div class="col-md-12 mt-3 mb-3">
-            <h4>Details</h4>
+          <div class="row">
+          <div class="col-md-12 mt-3 mb-1">
+            <h4>Pens</h4>
             </div>
-        </div>
-          </div>
+            <div class="col-md-6">
+              <ul class="list-group">
+                <% @pens.each do |pen| %>
+                  <%= link_to pen do |x| %>
+                  <li class="list-group-item">
+                   <%= pen.name %>
+                  </li>
+                  <% end %>
+                <% end %>
+              </ul>
+            </div>
+            <div class="col-md-6">
+              <div id="map" style='width: 100%; height: 400px;'></div>
+            </div>
+            </div>
 
         <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
 

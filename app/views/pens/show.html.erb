@@ -2,7 +2,24 @@
 <div class="row">
   <div class="col-12">
 
-    <h1><%= @pen.name %></h1>
+    <div class='row'>
+      <div class='col-md-12 space-between'>
+        <div class='space-between h-center'>
+          <%= link_to pens_path, class: "text-primary" do %>
+            <%= fa_icon "arrow-left 2x"%>
+          <% end %>
+          <h1 class="mb-0 ml-3"><%= @pen.name %></h1>
+          </div>
+        <div>
+          <%= link_to edit_pen_path(@pen), class: "btn btn-primary" do |x| %>
+        <%= fa_icon "edit"%><span class="ml-2"> Edit Pen</span>
+          <% end %>
+        </div>
+
+      </div>
+    </div>
+    <hr>
+
     <ul class="nav nav-tabs" id="myTab" role="tablist">
       <li class="nav-item">
         <a class="nav-link active" id="detail-tab" data-toggle="tab" href="#details" role="tab" aria-controls="details" aria-selected="true">Details</a>
@@ -24,7 +41,7 @@
 
 
           <!-- <ul> -->
-             <%# <% @mortality_totals.each do |k,v| %>
+             <%# <% @mortadlity_totals.each do |k,v| %>
                <%# <%= "#{k.id2name.split("_").join(" ").capitalize} -  #{v}" %>
             <%# <% end %>
           <!-- </ul> -->
@@ -103,30 +120,27 @@
           </div>
 
 
-          <div class="row">
+
             <div class="col-6">
               <%= form_tag pen_path, class: "form", method: :get, remote: true do |form|%>
 
               <div class="form-group">
-                <%= label_tag :date, 'Date', class: 'control-label' %><br />
+                <%= label_tag :date, 'Start Date', class: 'control-label' %><br />
                 <%= date_field_tag(:search_begin, (Time.now - 1.week).strftime('%Y-%m-%d'), class: 'form-control') %>
               </div>
             </div>
 
             <div class="col-6">
               <div class="form-group">
-                <%= label_tag :date, 'Date', class: 'control-label' %><br />
-                      <%= date_field_tag(:search_end, Time.now.strftime('%Y-%m-%d'), class: 'form-control') %>
-                  <%# <%= form.date_select :report_date, :placeholder => Date.current, class: 'datepicker' %>
+                <%= label_tag :date, 'End Date', class: 'control-label' %><br />
+                <%= date_field_tag(:search_end, Time.now.strftime('%Y-%m-%d'), class: 'form-control') %>
               </div>
             </div>
 
-  <%= submit_tag "Search", class: "btn btn-success ml-3 my-2 my-sm-0" %>
             <% end %>
-          </div>
-
-
-
+            <div class="col-12">
+              <%= submit_tag "Search", class: "btn btn-success" %>
+            </div>
 
 
           <div id="mortality_forms">

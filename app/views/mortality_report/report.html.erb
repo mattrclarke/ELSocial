@@ -1,8 +1,6 @@
-
   <div class="col-md-12 mt-4">
     <h2>Mortaility Reports</h2>
     <hr>
-  </div>
 
 
   <div class="row">
@@ -39,10 +37,11 @@
       </div>
     </div>
 
-
-  <%= submit_tag "Search", class: "btn btn-success ml-3 my-2 my-sm-0" %>
-    <% end %>
   </div>
+
+
+    <% end %>
+    <%= submit_tag "Search", class: "btn btn-success" %>
 
 <div id="mortality_forms">
   <%= render 'shared/mortality_reports', reports: @reports%>

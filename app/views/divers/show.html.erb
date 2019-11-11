@@ -1,5 +1,25 @@
 <p id="notice"><%= notice %></p>
 
+<div class='col-md-12 space-between h-center'>
+
+        <!-- <span> -->
+        <div class='space-between h-center'>
+          <%= link_to divers_path, class: "text-primary" do %>
+            <%= fa_icon "arrow-left 2x text-primary"%>
+          <% end %>
+        <!-- </span> -->
+
+      <h1 class="mb-0 ml-3"><%= @diver.full_name %></h1>
+    </div>
+  <div>
+    <%= link_to edit_diver_path(@diver), class: "btn btn-primary" do |x| %>
+  <%= fa_icon "edit"%><span class="ml-2"> Edit Diver</span>
+    <% end %>
+  </div>
+
+</div>
+<hr>
+<div class="col-md-12">
 <p>
   <strong>First name:</strong>
   <%= @diver.first_name %>
@@ -29,6 +49,4 @@
   <strong>Secondary contact:</strong>
   <%= @diver.secondary_contact %>
 </p>
-
-<%= link_to 'Edit', edit_diver_path(@diver) %> |
-<%= link_to 'Back', divers_path %>
+</div>
