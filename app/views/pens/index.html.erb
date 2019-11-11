@@ -32,7 +32,7 @@
         <% @pens.each do |pen| %>
           <tr>
             <td><%= link_to pen.name, pen %></td>
-            <td><%= link_to pen.lease.location, pen.lease %></td>
+            <td><%= link_to pen.lease.name, pen.lease %></td>
             <td><%= pen.latitude %></td>
             <td><%= pen.longitude %></td>
 
@@ -76,7 +76,6 @@
 <script>
   // Initialize and add the map
   function initMap() {
-  // The location of Uluru
   var uluru = {lat: -25.344, lng: 131.036};
   var uluru_2 = {lat: -22.344, lng: 119.036};
   // The map, centered at Uluru

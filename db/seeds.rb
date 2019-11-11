@@ -2,16 +2,22 @@ test_user = User.create(email: "a@a.com", password: 'a')
 
 lat = 0.000
 lon = 0.000
-5.times do |x|
-  lat = lat + 0.001
-  lon = lon + 0.001
-  lease = Lease.create(location: Faker::Ancient.god)
-  pen = Pen.create(lease: lease, name: Faker::Ancient.titan,  latitude: -25.340 + lat, longitude: 131.030 + lon)
+
+Lease.create(name: "Bickers")
+Lease.create(name: "Point Boston")
+Lease.create(name: "Northern")
+Lease.create(name: "Louth")
+Lease.create(name: "North Block Arno")
+Lease.create(name: "South Block Arno")
+leases = Lease.all
+
+10.times do |x|
+  lat = lat + rand(0.001...0.10).round(1)
+  lon = lon + rand(0.001...0.10).round(1)
+  pen = Pen.create(lease: leases.sample, name: Faker::Ancient.titan,  latitude: -25.340 + lat, longitude: 131.030 + lon)
   # LeasePen.create(lease:lease, pen:pen)
 end
 
-lease = Lease.first
-pen = Pen.first
 
 7.times do |x|
   diver = Diver.create(
@@ -23,9 +29,10 @@ pen = Pen.first
     secondary_contact: "11111111"
   )
   5.times do |y|
+    offset = rand(Pen.count)
+    pen = Pen.offset(offset).first
 
-
-    MortalityForm.create(lease: lease, pen: pen, diver: diver,
+    MortalityForm.create(lease: leases.sample, pen: pen, diver: diver,
      date: DateTime.current - x.days,
      bird_strikes: Random.rand(50),
      seal_strikes: Random.rand(50),

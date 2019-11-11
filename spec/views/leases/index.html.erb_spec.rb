@@ -4,11 +4,11 @@ RSpec.describe "leases/index", type: :view do
   before(:each) do
     assign(:leases, [
       Lease.create!(
-        :location => "Location",
+        :name => "name",
 
       ),
       Lease.create!(
-        :location => "Location",
+        :name => "name",
 
       )
     ])
@@ -16,7 +16,7 @@ RSpec.describe "leases/index", type: :view do
 
   it "renders a list of leases" do
     render
-    assert_select "tr>td", :text => "Location".to_s, :count => 2
+    assert_select "tr>td", :text => "name".to_s, :count => 2
 
   end
 end

@@ -24,7 +24,7 @@
     <div class="col-6">
       <div class="form-group">
         <%= label_tag :lease_Id, 'Lease', class: 'control-label' %><br />
-        <%= select_tag :lease_id, options_from_collection_for_select(@leases, "id", "location"), :include_blank => "All leases", class: 'form-control select'  %>
+        <%= select_tag :lease_id, options_from_collection_for_select(@leases, "id", "name"), :include_blank => "All leases", class: 'form-control select'  %>
       </div>
     </div>
     <div class="col-6">

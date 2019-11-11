@@ -8,7 +8,7 @@
             <%= link_to leases_path, class: "text-primary" do %>
               <%= fa_icon "arrow-left 2x"%>
             <% end %>
-            <h1 class="mb-0 ml-3"><%= @lease.location %></h1>
+            <h1 class="mb-0 ml-3"><%= @lease.name %></h1>
             </div>
           <div>
             <%= link_to edit_lease_path(@lease), class: "btn btn-primary" do |x| %>
@@ -35,7 +35,7 @@
           <div class="col-md-12 mt-3 mb-1">
             <h4>Pens</h4>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
               <ul class="list-group">
                 <% @pens.each do |pen| %>
                   <%= link_to pen do |x| %>
@@ -83,16 +83,51 @@
 
 
 <script>
-  // Initialize and add the map
-  function initMap() {
-  // The location of Uluru
-  var uluru = {lat: -25.344, lng: 131.036};
-  // var uluru_2 = {lat: -22.344, lng: 119.036};
-  // The map, centered at Uluru
+
+function initMap() {
+  let locations = []
+  fetch('./1.json') // Call the fetch function passing the url of the API as a parameter
+  .then(function(response) {
+   return response.json();
+ }).then(function(res) {
+
+   locations = res.body
+   var uluru = {lat: -25.344, lng: 131.036};
+
   var map = new google.maps.Map(
-  document.getElementById('map'), {zoom: 4, center: uluru});
-  // The marker, positioned at Uluru
-  // var markers = new google.maps.Marker({position: uluru_2, map: map});
-  var marker = new google.maps.Marker({position: uluru, map: map});
-  }
+    document.getElementById('map'), {zoom: 6, center: locations[0]}
+  );
+
+  res.body.forEach(function(coords) {
+
+    var contentString = '<div id="content">'+
+       '<div id="siteNotice">'+
+       '</div>'+
+       '<h5 id="firstHeading" class="firstHeading">Pen</h5>'+
+       '<div id="bodyContent">'+
+       `<p><b>${coords.name} </b></p>` +
+       '</div>'+
+       '</div>';
+
+    var infowindow = new google.maps.InfoWindow({
+       content: contentString
+     });
+
+    var marker = new google.maps.Marker({ position: { lat:coords.lat , lng: coords.lng }, map: map })
+
+    marker.addListener('click', function() {
+      infowindow.open(map, marker);
+    });
+
+  });
+
+
+ });
+}
+
+
+
+
+$( document ).ready(function() {
+});
 </script>

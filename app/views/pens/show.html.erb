@@ -49,7 +49,7 @@
           <div class="col-md-6 mt-4">
             <p>
               <strong>Lease:</strong>
-              <%= @pen.lease.location %>
+              <%= @pen.lease.name %>
             </p>
             <p>
               <strong>Latitude:</strong>
@@ -174,7 +174,7 @@
 
   // Initialize and add the map
   function initMap() {
-  // The location of Uluru
+
   var uluru = {lat: lat, lng: lng};
   // The map, centered at Uluru
   var map = new google.maps.Map(

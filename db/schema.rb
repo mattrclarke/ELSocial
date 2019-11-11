@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 2019_11_10_030741) do
   end
 
   create_table "leases", force: :cascade do |t|
-    t.string "location"
+    t.string "name"
     t.string "latitude"
     t.string "lon"
     t.datetime "created_at", precision: 6, null: false

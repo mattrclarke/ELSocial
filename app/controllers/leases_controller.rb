@@ -1,5 +1,6 @@
 class LeasesController < ApplicationController
   before_action :set_lease, only: [:show, :edit, :update, :destroy]
+  skip_before_action :verify_authenticity_token
 
   # GET /leases
   def index
@@ -8,8 +9,13 @@ class LeasesController < ApplicationController
 
   # GET /leases/1
   def show
-    @pens = Pen.where(lease_id: @lease.id)
-    # @mortalities = Mortalities.where(pen_id: @pens.ids)
+      @pens = Pen.where(lease_id: @lease.id)
+      @locations = @pens.map{|pen| {name: pen.name, lat: pen.latitude.to_f, lng: pen.longitude.to_f} }
+
+    respond_to do |format|
+      format.html
+      format.json { render json: { body: @locations }.to_json }
+    end
   end
 
   # GET /leases/new
@@ -57,6 +63,6 @@ class LeasesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def lease_params
-      params.require(:location).permit(:lease)
+      params.require(:name).permit(:lease)
     end
 end
