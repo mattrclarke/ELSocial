@@ -14,7 +14,7 @@ leases = Lease.all
 10.times do |x|
   lat = lat + rand(0.001...0.10).round(1)
   lon = lon + rand(0.001...0.10).round(1)
-  pen = Pen.create(lease: leases.sample, name: Faker::Ancient.titan,  latitude: -25.340 + lat, longitude: 131.030 + lon)
+  pen = Pen.create(lease: leases.sample, name: Faker::Ancient.titan,  latitude: Faker::Geolocation.lat, longitude: Faker::Geolocation.lng )
   # LeasePen.create(lease:lease, pen:pen)
 end
 

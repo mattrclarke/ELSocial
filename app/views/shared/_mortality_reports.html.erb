@@ -7,49 +7,50 @@
     <table class="table table-striped table-bordered table-sm">
       <thead class="table-light">
         <tr>
-          <th class="rotate"><div><span>Lease</span></div></th>
-          <th class="rotate"><div><span>Pen</span></div></th>
-          <th class="rotate"><div><span>Diver</span></div></th>
-          <!-- <th class="rotate"><div><span>Date</span></div></th> -->
-          <th class="rotate"><div><span>Bird strikes</span></div></th>
-          <th class="rotate"><div><span>Seal strikes</span></div></th>
-          <th class="rotate"><div><span>Skinny</span></div></th>
-          <th class="rotate"><div><span>Deformities</span></div></th>
-          <th class="rotate"><div><span>Unknown</span></div></th>
-          <!-- <th class="rotate"><div><span>Mort comments</span></div></th> -->
-          <th class="rotate"><div><span>Shallow rot</span></div></th>
-          <th class="rotate"><div><span>Deep rot</span></div></th>
-          <th class="rotate"><div><span>Missing weights</span></div></th>
-          <th class="rotate"><div><span>Skin burn</span></div></th>
-          <th class="rotate"><div><span>Fish rub</span></div></th>
-          <th class="rotate"><div><span>Probe cleaned</span></div></th>
-          <!-- <th class="rotate"><div><span>Observations</span></div></th> -->
+          <th class="text-center"><div><span>Lease</span></div></th>
+          <th class="text-center"><div><span>Pen</span></div></th>
+          <th class="text-center"><div><span>Diver</span></div></th>
+          <!-- <th class="text-center"><div><span>Date</span></div></th> -->
+          <th class="text-center"><div><span>Bird strikes</span></div></th>
+          <th class="text-center"><div><span>Seal strikes</span></div></th>
+          <th class="text-center"><div><span>Skinny</span></div></th>
+          <th class="text-center"><div><span>Deformities</span></div></th>
+          <th class="text-center"><div><span>Unknown</span></div></th>
+          <th class="text-center"><div><span>Shallow rot</span></div></th>
+          <th class="text-center"><div><span>Deep rot</span></div></th>
+          <th class="text-center"><div><span>Missing weights</span></div></th>
+          <th class="text-center"><div><span>Skin burn</span></div></th>
+          <th class="text-center"><div><span>Fish rub</span></div></th>
+          <th class="text-center"><div><span>Probe cleaned</span></div></th>
+          <th class="text-center"><div><span>Mort comments</span></div></th>
+          <th class="text-center"><div><span>Observations</span></div></th>
         </tr>
       </thead>
       <tbody>
         <% rep.each do |mortality_form| %>
-          <tr class="text-center">
-            <td><%= mortality_form.lease.name %></td>
-            <td><%= mortality_form.pen.name %></td>
-            <td> <%= mortality_form.diver.initials %></td>
+          <tr class="">
+            <td class="align-middle text-center"><%= mortality_form.lease.name %></td>
+            <td class="align-middle text-center"><%= mortality_form.pen.name %></td>
+            <td class="align-middle text-center"> <%= mortality_form.diver.initials %></td>
             <%# <%= mortality_form.date %>
-            <td><%= mortality_form.bird_strikes %></td>
-            <td><%= mortality_form.seal_strikes %></td>
-            <td><%= mortality_form.skinny %></td>
-            <td><%= mortality_form.deformities %></td>
-            <td><%= mortality_form.unknown %></td>
-            <%# <%= mortality_form.mort_comments %>
-            <td><%= mortality_form.shallow_rot %></td>
-            <td><%= mortality_form.deep_rot %></td>
-            <td><%= mortality_form.missing_weights %></td>
-            <td><%= mortality_form.skin_burn %></td>
-            <td><%= mortality_form.fish_rub %></td>
-            <td><%= mortality_form.probe_cleaned %></td>
-            <%# <%= mortality_form.observations %>
+            <td class="align-middle text-center"><%= mortality_form.bird_strikes %></td>
+            <td class="align-middle text-center"><%= mortality_form.seal_strikes %></td>
+            <td class="align-middle text-center"><%= mortality_form.skinny %></td>
+            <td class="align-middle text-center"><%= mortality_form.deformities %></td>
+            <td class="align-middle text-center"><%= mortality_form.unknown %></td>
+            <td class="align-middle text-center"><%= mortality_form.shallow_rot %></td>
+            <td class="align-middle text-center"><%= mortality_form.deep_rot %></td>
+            <td class="align-middle text-center"><%= mortality_form.missing_weights %></td>
+            <td class="align-middle text-center"><%= mortality_form.skin_burn %></td>
+            <td class="align-middle text-center"><%= mortality_form.fish_rub %></td>
+            <td class="align-middle text-center"><%= mortality_form.probe_cleaned %></td>
+            <td class="align-middle text-center"><%= mortality_form.observations %></td>
+            <td class="align-middle text-center"><%= mortality_form.mort_comments %></td>
           </tr>
 
-
           <% end %>
+
+
           <tr class="text-center">
             <th>Total</th>
             <td></td>
